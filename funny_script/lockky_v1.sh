@@ -1,5 +1,5 @@
 #!/bin/bash
-# origin src comes from linuxsir.
+# Origin src comes from linuxsir: http://www.linuxsir.org/bbs/thread29701.html
 # Modified by RyanH@osk 2014-3-1.
 # enjoy!
 
