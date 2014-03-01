@@ -1,0 +1,861 @@
+Script started on Sat 01 Mar 2014 01:21:55 PM JST
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ cd tmp/
+bash: cd: tmp/: No such file or directory
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+		Please enter unlock code:
+		
+                ★★★★★★★★★★★★★★★★★★★★★★★★★
+                ★　                     ★
+                ★　Welcome back, ryan.  ★
+                ★　Today is 2014-03-01  ★
+                ★                       ★
+                ★★★★★★★★★★★★★★★★★★★★★★★★★
+
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ size
+size: 'a.out': No such file
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ size^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                ★★★★★★★★★★★★★★★★★★★★★★★★★
+                ★　                     ★
+                ★　Welcome back, ryan.  ★
+                ★　Today is 2014-03-01  ★
+                ★                       ★
+                ★★★★★★★★★★★★★★★★★★★★★★★★★
+
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J./test.sh: line 47: warning: here-document at line 31 delimited by end-of-file (wanted `EOF')
+./test.sh: line 48: syntax error: unexpected end of file
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                    ★★★★★★★★★★★★★★★★★★★★★★★★★
+                    ★　                     ★
+                    ★　Welcome back, ryan.  ★
+                    ★　Today is 2014-03-01  ★
+                    ★                       ★
+                    ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                    ★　                     ★
+                    ★　Welcome back, ryan.  ★
+                    ★　Today is 2014-03-01  ★
+                    ★                       ★
+                    ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ls
+#grep2_error.txt#  over  redirection.txt  [0m[01;32mtest.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ls
+#grep2_error.txt#  over  redirection.txt  [0m[01;32mtest.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+
+
+
+
+
+
+
+			Please enter unlock code:[H[2J      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+./test.sh: line 59: syntax error near unexpected token `esac'
+./test.sh: line 59: `      esac'
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+
+
+
+
+
+
+
+			      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+Please enter unlock code:[H[2J
+
+
+
+
+
+
+
+			      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+./test.sh: line 61: syntax error near unexpected token `;;'
+./test.sh: line 61: `            ;;'
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh ls[K./test.sh [6Psize./test.sh [3Pcd tmp/ls[Kcd ..[3Plscd linuxsir_/ls[Kcd ..[3Plscd ../tmp/[2Pat tmp ls[Kcd linuxsir_/ls[K^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....11[H[2J
+
+
+
+
+
+
+
+			      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+
+
+
+
+
+
+
+			Please enter unlock code:[H[2J
+
+
+
+
+
+
+
+			      _______________________________
+     < Your System ate a SPARC! Gah! >
+      -------------------------------
+             \   ^__^
+              \  (xx)\_______
+                 (__)\       )\/
+                  U  ||----w |
+                     ||     ||
+
+
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+  _______________________________
+         < Your System ate a SPARC! Gah! >
+          -------------------------------
+                 \   ^__^
+                  \  (xx)\_______
+                     (__)\       )\/
+                      U  ||----w |
+                         ||     ||
+
+
+
+
+
+
+
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh ls[K
+#grep2_error.txt#  over  redirection.txt  [0m[01;32mtest.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ls./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+                  _______________________________
+                 < Your System ate a SPARC! Gah! >
+                  -------------------------------
+                         \   ^__^
+                          \  (xx)\_______
+                             (__)\       )\/
+                              U  ||----w |
+                                 ||     ||
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh ls[K./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+                          _______________________________
+                         < Your System ate a SPARC! Gah! >
+                          -------------------------------
+                                 \   ^__^
+                                  \  (xx)\_______
+                                     (__)\       )\/
+                                      U  ||----w |
+                                         ||     ||
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Press Waitting.....1[H[2J
+                      _______________________________
+                     < Your System ate a SPARC! Gah! >
+                      -------------------------------
+                             \   ^__^
+                              \  (xx)\_______
+                                 (__)\       )\/
+                                  U  ||----w |
+                                     ||     ||
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ date
+Sat Mar  1 13:44:44 JST 2014
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ date
+Sat Mar  1 13:46:51 JST 2014
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ date./test.sh 
+[3g        H        H        H        H        H        H        H        H        Hc[!p[?3;4l[4l>[H[2J
+
+
+
+
+
+
+                System will be locked!!! Please Waitting.....9                System will be locked!!! Please Waitting.....8                System will be locked!!! Please Waitting.....7                System will be locked!!! Please Waitting.....6                System will be locked!!! Please Waitting.....5                System will be locked!!! Please Waitting.....4                System will be locked!!! Please Waitting.....3                System will be locked!!! Please Waitting.....2                System will be locked!!! Please Waitting.....1                System will be locked!!! Please Waitting.....0[H[2J
+                      _______________________________
+                     < Your System ate a SPARC! Gah! >
+                      -------------------------------
+                             \   ^__^
+                              \  (xx)\_______
+                                 (__)\       )\/
+                                  U  ||----w |
+                                     ||     ||
+
+			Please enter unlock code:
+		
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, ryan.  ★
+                        ★　Today is 2014-03-01  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ls
+#grep2_error.txt#  over  redirection.txt  [0m[01;32mtest.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ pwd
+/home/gemini/workspace/cs/bash/bash_prog_intro_how_to
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ cp ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ cp test.sh lock ky.sh
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ mv lockky.sh ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ mv lockky.sh lo ckky.sh [1@_[1@m[1@1
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ mv lockky_m1.sh  lockky_m1.sh [1P[1@v
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ ls
+#grep2_error.txt#  [0m[01;32mlockky_v1.sh[0m  over  redirection.txt  [01;32mtest.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ mv lockky_v1.sh  ../
+abs_guide/              bash_prog_intro_how_to/ 
+bash-master/            .git/                   
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ mv lockky_v1.sh  ../^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash_prog_intro_how_toryan@HHKB:/home/gemini/workspace/cs/bash/bash_prog_intro_how_to$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ mkdir ldl[K[Kfun[Ks[Kfunny_shhel[1Pel[C[Cl[Ksec[1Pc[Cript
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ mv bash_prog_intro_how_to/lockky_v1.sh  funny_script/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd funny_script/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ ls
+[0m[01;32mlockky_v1.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd funny_script/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ ls
+[0m[01;32mlockky_v1.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ cat lockky_v1.sh 
+#!/bin/bash
+# origin src comes from linuxsir.
+# Modified by RyanH@osk 2014-3-1.
+# enjoy!
+
+# Screen deal
+reset;clear
+info="System will be locked!!! Please Waitting....."
+printf "\n\n\n\n\n\n\n"
+for i in 9 8 7 6 5 4 3 2 1 0
+#for i in  1                     # for test
+do
+    printf "                \a$info$i\r"
+    sleep 1
+done
+clear
+
+# Catch 'CTRL+C' 'CTRL+X' 'CTRL+\' signal
+trapper()
+{
+    trap '' 2 3 20
+}
+
+# Lock the screen
+while :
+do
+    trapper
+    printf "\n"
+cat <<EOF
+                      _______________________________
+                     < Your System ate a SPARC! Gah! >
+                      -------------------------------
+                             \   ^__^
+                              \  (xx)\_______
+                                 (__)\       )\/\
+
+                                  U  ||----w |
+                                     ||     ||
+EOF
+    printf "\n\t\t\t"
+    printf "Please enter unlock code:"
+    stty -echo                  # hide the input characters
+    read input
+    case $input in
+        kohata|KOHATA)
+            printf "\n\t\t\n"
+            cat <<EOF
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+                        ★　                     ★
+                        ★　Welcome back, $USER.  ★
+                        ★　Today is $(date +%F)  ★
+                        ★                       ★
+                        ★★★★★★★★★★★★★★★★★★★★★★★★★
+EOF
+            stty echo
+            break;;
+        *)
+            clear
+            continue
+            ;;
+        esac
+done
+# script over
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ cat lockky_v1.sh ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ tsize
+No command 'tsize' found, did you mean:
+ Command 'psize' from package 'pdb2pqr' (universe)
+ Command 'size' from package 'binutils' (main)
+ Command 'size' from package 'binutils-multiarch' (universe)
+tsize: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ #[K$LINES
+43: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ $LINES[KCOLUMNS
+80: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ stty size
+43 80
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ ls
+[0m[01;32mlockky_v1.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ mkdir sth^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ mkdir tricky
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd tricky/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ c^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ls
+[0m[01;32mget_size_of_terminal.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+bash: ./get_size_of_terminal.sh: /bin/bah: bad interpreter: No such file or directory
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+43 80
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+1: stty size
+43 80
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+M1: stty size
+43 80
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+M1: stty size
+43 80
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh ls[Kcd tricky/mkdir trickyls[Kcd ..[3Plsstty size[1P$COLUMNS[2PLINES[1Ptsize
+No command 'tsize' found, did you mean:
+ Command 'psize' from package 'pdb2pqr' (universe)
+ Command 'size' from package 'binutils' (main)
+ Command 'size' from package 'binutils-multiarch' (universe)
+tsize: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ tsize./get_size_of_terminal.sh ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS
+ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $l[KLINES
+43: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $LINES
+43: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $LINES./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS
+ 
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS
+ 
+./get_size_of_terminal.sh: line 12: LINES: command not found
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS
+ 
+$LINES
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS
+ 
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS in terminal
+ 
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $clo[1Po[Clumns
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $columns^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $columns[Krows
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ $rows($rows[C[C[C[C[C)
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ($rows)^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS in terminal
+ 
+-------------------
+./get_size_of_terminal.sh: line 15: * : syntax error: operand expected (error token is "* ")
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: $LINES $COLUMNS in terminal
+ 
+-------------------
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ tput cols
+80
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ tput cols[K[K[K[Klines
+43
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ tput lines[1Pcols^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+80 43
+-------------------
+M3: $LINES $COLUMNS in terminal
+ 
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+4380
+-------------------
+M3: $LINES $COLUMNS in terminal
+ 
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+43 80
+-------------------
+M3: $LINES $COLUMNS in terminal
+ 
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ./get_size_of_terminal.sh 
+-------------------
+M1: stty size
+43 80
+-------------------
+M2: tput lines | tput cols
+43 80
+-------------------
+M3: $LINES $COLUMNS in terminal
+ 
+-------------------
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ls
+[0m[01;32mget_size_of_terminal.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ [H[2J]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ s
+s: command not found
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ c^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ca^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd bash-master/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash-masterryan@HHKB:/home/gemini/workspace/cs/bash/bash-master$ ls
+[0m[01;34mchapter_1[0m  [01;34mchapter_2[0m  #github_src.sh#  github_src.sh  README  [01;34mtmp[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/bash-masterryan@HHKB:/home/gemini/workspace/cs/bash/bash-master$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd ..^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd abs_guide/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/abs_guideryan@HHKB:/home/gemini/workspace/cs/bash/abs_guide$ ls
+[0m[01;34mchapter_2[0m  [01;34mlinuxsir_[0m  [01;34mtmp[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/abs_guideryan@HHKB:/home/gemini/workspace/cs/bash/abs_guide$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/abs_guideryan@HHKB:/home/gemini/workspace/cs/bash/abs_guide$ ls
+[0m[01;34mchapter_2[0m  [01;34mlinuxsir_[0m  [01;34mtmp[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/abs_guideryan@HHKB:/home/gemini/workspace/cs/bash/abs_guide$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ cd tricky/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ ls
+[0m[01;32mget_size_of_terminal.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/trickyryan@HHKB:/home/gemini/workspace/cs/bash/tricky$ cd ../funny_script/
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ ls
+[0m[01;32mlockky_v1.sh[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bash/funny_scriptryan@HHKB:/home/gemini/workspace/cs/bash/funny_script$ cd ..
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls
+[0m[01;34mabs_guide[0m  [01;34mbash-master[0m  [01;34mbash_prog_intro_how_to[0m  [01;34mfunny_script[0m  [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ls -al
+total 32
+drwxrwxr-x 8 ryan ryan 4096 Mar  1 13:54 [0m[01;34m.[0m
+drwxrwxr-x 5 ryan ryan 4096 Mar  1 12:07 [01;34m..[0m
+drwxrwxr-x 5 ryan ryan 4096 Mar  1 12:09 [01;34mabs_guide[0m
+drwxrwxr-x 5 ryan ryan 4096 Mar  1 12:09 [01;34mbash-master[0m
+drwxrwxr-x 2 ryan ryan 4096 Mar  1 13:49 [01;34mbash_prog_intro_how_to[0m
+drwxrwxr-x 2 ryan ryan 4096 Mar  1 13:51 [01;34mfunny_script[0m
+drwxrwxr-x 8 ryan ryan 4096 Mar  1 12:09 [01;34m.git[0m
+drwxrwxr-x 2 ryan ryan 4096 Mar  1 14:06 [01;34mtricky[0m
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ git origin
+git: 'origin' is not a git command. See 'git --help'.
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ git remote origin
+error: Unknown subcommand: origin
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote rm <name>
+   or: git remote set-head <name> (-a | -d | <branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote set-url <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/workspace/cs/bash$ ^C
+]0;ryan@HHKB: /home/gemini/workspace/cs/bashryan@HHKB:/home/gemini/

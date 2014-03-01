@@ -3,6 +3,9 @@
 # Modified by RyanH@osk 2014-3-1.
 # enjoy!
 
+# TODO: forbidden other terminal windows
+
+
 # Screen deal
 reset;clear
 info="System will be locked!!! Please Waitting....."
