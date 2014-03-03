@@ -1,135 +1,128 @@
-#!/bin/bash
+#!/bin/sh
+#
+# msinfo.sh           This shell script displays the boot sector of the
+#                     given partition.
+#
+# Author:             Rahul U. Joshi
+#
+# Modifications       Removed the use of expr and replaced it by the let
+#                     command.
+#
+# ------------------------------------------------------------------------
+# This program is a free software, you can redistribute it and/or modify
+# it under the eterms of the GNU General Public Liscence as published by
+# the Free Software Foundation; either version 2 or (at your option) any
+# later version.
+#
+# This program is being distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY without even the implied warranty of
+# MERCHANTIBILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public Liscence for more details.
+# -------------------------------------------------------------------------
 
-# ★★★★★★★★★★★★★★★★★★★★ #
-# Referenced: http://www.linuxsir.org/  #
-# by RyanH@osk 2014-3-1                 #
-# Email: otagao@gmail.com               #
-# ★★★★★★★★★★★★★★★★★★★★ #
 
-# Following packages are supported.
-# .tar | .bz | .tar.bz | .bz2 | .tar.bz2 | .gz | .tar.gz
-# .tgz | .zip | .rar | .Z | .tar.Z | .lha | .xz
-
-UNPACK=1                        # rtn: [OK:0] [NG:1]
-
-# .tar package
-if [ ${1##*.} == tar ]; then
-        tar xvf $1
-        #tar cvf $1                  # make package
-        UNPACK=$?
-        echo This is a tar package.
+# check for command line arguments
+if [ $# -ne 1 ]; then
+   echo "Usage: msinfo <partition name>"
+   exit 1
 fi
 
-# .bz || .tar.bz package
-if [ ${1##*.} == bz ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-                tar jxvf $1     # uncompress package
-                UNPACK=$?
-                echo This is a tar.bz package.
-        else
-                bunzip2 $1
-                # bzip -d $1      # M2
-                UNPACK=$?
-                echo This is a bz package.
-        fi
+# check whether the input name is a block device
+if [ ! -b $1 ]; then
+   echo "msinfo: $1 is not a block device"
+   exit 1
 fi
 
-
-# .bz2 || .tar.bz2 package
-if [ ${1##*.} == bz2 ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-                tar jxvf $1     # uncompress package
-                # tar jcvf test.tar.bz2 directory_name # compress package
-                UNPACK=$?       # get last code's result
-                echo This is a tar.bz2 package.
-        else
-                bunzip2 $1
-                # bzip -d $1      # M2
-                UNPACK=$?
-                echo This is a bz2 package.
-        fi
+# create two temporary files for use
+TMPFILE=`mktemp -q /tmp/$0.XXXXXX`
+if [ $? -ne 0 ]; then
+    echo "msinfo: Can't create temp file, exiting..."
+    exit 1
 fi
 
-# .gz || .tar.gz package
-if [ ${1##*.} == gz ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-                tar zxvf $1
-                # tar zxvf $1 -C ./test # decompress to specify folder
-                # tar zcvf test.tar.gz directory_name # compress package
-                UNPACK=$?
-                echo This is a tar.gz package.
-        else
-                gunzip $1
-                # gzip -d $1
-                # gzip directory_name # compress package
-                UNPACK=$?
-                echo This is a gz package.
-        fi
+TXTFILE=`mktemp -q /tmp/$0.XXXXXX`
+if [ $? -ne 0 ]; then
+   echo "msinfo: Can't create temp file, exiting..."
+   rm -f $TMPFILE
+   exit 1
 fi
 
-# .tgz package
-if [ ${1##*.} == tgz ]; then
-        tar zxvf $1
-        # tar zxvf $1 -C ./test # decompress to specify folder
-        # tar zcvf test.tgz directory_name # compress package
-        UNPACK=$?
-        echo This is a tgz package.
+backtitle="`printf "%78s" "msinfo, Information about FAT16 filesystem -- Rahul Joshi"`"
+
+dialog --title "Boot sector of $1" --backtitle "$back_title" \
+       --infobox "\nAnalysing boot sector for $1\nPlease wait..."  14 60
+
+# truncate TXTFILE to zero length
+echo > $TXTFILE
+
+# get Formatting DOS version
+dd 2>/dev/null if=$1  bs=1 count=8 skip=3 | dd 2>/dev/null of=$TMPFILE
+printf >>$TXTFILE "%30s : %s\n" "Formatting DOS version" "`cat $TMPFILE`"
+
+
+# get file system
+dd 2>/dev/null if=$1  bs=1 count=8 skip=54 | dd 2>/dev/null of=$TMPFILE
+printf >>$TXTFILE "%30s : %s\n" "Filesystem" "`cat $TMPFILE`"
+
+# check if filesystem in a FAT16
+if [ "`cat $TMPFILE`" != "FAT16   " ]; then
+  dialog --title "Boot sector of $1" --backtitle "$back_title" \
+         --infobox  "\nCan't find a FAT16 filesystem on $1"  14 60
+  exit 2
 fi
 
-# .zip package
-if [ ${1##*.} == zip ]; then
-        unzip $1 -d directory_name
-        # zip test.zip directory_name
-        UNPACK=$?
-        echo This is a zip package.
-fi
+# get volume label in boot sector
+dd 2>/dev/null if=$1  bs=1 count=11 skip=43 | dd 2>/dev/null of=$TMPFILE
+printf >>$TXTFILE "%30s : %s\n" "Volume label in boot sector" "`cat $TMPFILE`"
 
-# .rar package
-if [ ${1##*.} == rar ]; then
-        rar x $1
-        # rar a test.zip directory_name
-        UNPACK=$?
-        echo This is a rar package.
-fi
 
-# .Z | .tar.Z  package
-if [ ${1##*.} == Z ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-                tar Zxvf $1
-                # tar Zcvf FileName.tar.Z DirName # compress
-                UNPACK=$?
-                echo This is a tar.Z package.
-        else
-                uncompress $1
-                # compress directory_name # compress
-                UNPACK=$?
-                echo This is a .Z package.
-        fi
-fi
+# get Sector size
+dd 2>/dev/null if=$1  bs=1 count=2 skip=11| od -An -tdS | dd 2>/dev/null of=$TMPFILE
+printf >>$TXTFILE "%30s : %d\n" "Sector size" `cat $TMPFILE`
+sector_size=`cat $TMPFILE`
 
-# .lha package
-if [ ${1##*.} == lha ]; then
-        lha -e $1
-        # lha -a FileName.lha FileName # compress
-        UNPACK=$?
-        echo This is a lha package.
-fi
 
-# .xz package
-if [ ${1##*.} == xz ]; then
-        xz -d $1
-        tar -xvf ${1%.*}
-        UNPACK=$?
-        echo This is a xz package.
-fi
+# get Reserved sectors
+dd 2>/dev/null if=$1  bs=1 count=2 skip=14| od -An -tdS | dd 2>/dev/null of=$TMPFILE
+printf >>$TXTFILE "%30s : %d\n" " Reserved sectors" `cat $TMPFILE`
+reserved_sectors=`cat $TMPFILE`
 
-# rtn check
-if [ $UNPACK == 0 ]; then
-        echo Succes!
-else
-        echo Maybe it is not a package or the package is damaged?
-fi
+
+# get FAT sectors
+dd 2>/dev/null if=$1  bs=1 count=1 skip=16| od -An -tdS | dd 2>/dev/null of=$TMPFILE
+fat_count=`cat $TMPFILE`
+
+dd 2>/dev/null if=$1  bs=1 count=2 skip=22| od -An -tdS | dd 2>/dev/null of=$TMPFILE
+sectors_per_fat=`cat $TMPFILE`
+
+# calculate the no of sectors allocated for FAT's
+let fat_sectors=fat_count*sectors_per_fat
+
+printf >>$TXTFILE "%30s : %u (%u x %u) \n" "FAT sectors" "$fat_sectors" \
+        "$fat_count" "$sectors_per_fat"
+
+
+# get root directory sectors
+dd 2>/dev/null if=$1  bs=1 count=2 skip=17| od -An -tdS | dd 2>/dev/null of=$TMPFILE
+root_sectors=`cat $TMPFILE`
+
+# calculate the no of sectors allocated for root directory
+let root_sectors=root_sectors*32/sector_size
+
+printf >>$TXTFILE "%30s : %u\n" "Root directory sectors" "$root_sectors"
+
+
+# get Total special sectors
+let total=reserved_sectors+fat_sectors+root_sectors
+printf >>$TXTFILE "%30s : %u\n" "Total special sectors" "$total"
+
+
+# display the information
+dialog --title "Boot sector of $1"  --backtitle "$back_title"  --msgbox "`cat
+$TXTFILE`" 14 60
+
+# delete temporary files
+rm -f $TMPFILE
+rm -f $TXTFILE
+
+# end of msinfo.sh
