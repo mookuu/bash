@@ -4,11 +4,11 @@
 
 # M1: program mark
 cat <<EOF
-# ★★★★★★★★★★★★★★★★★★★★ #
+# ★★★★★★★★★★★★★★★★★★★★★★ #
 # Referenced: http://www.linuxsir.org/  #
 # by RyanH@osk 2014-3-1                 #
 # Email: otagao@gmail.com               #
-# ★★★★★★★★★★★★★★★★★★★★ #
+# ★★★★★★★★★★★★★★★★★★★★★★ #
 EOF
 
 # M1: 初音ミク from Internet
