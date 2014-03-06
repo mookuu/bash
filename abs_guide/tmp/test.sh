@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+#!/bin/bash
+cd /dada &> /dev/null
+echo rv: $?
+cd $(pwd)/.. &> /dev/null
+echo rv: $?
+=======
 #! /bin/bash
 
 # recursive multiplication
@@ -21,3 +28,4 @@ function factorial
 factorial $1
 
 echo "Factorial of $1 is:$result"
+>>>>>>> 77f28539bd271138bed0b24ce25866a529c3d346
