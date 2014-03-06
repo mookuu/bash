@@ -36,7 +36,7 @@ echo 'set -o noclobber' >> ~/.bashrc # avoid file overwrite by mistake, use | if
 format:
     fd >> file
 description:
-    same as Redirecting Output, except contents are expended to the file
+    same as Redirecting Output, except contents are expanded to the file
 
 # M4:标准输出与标准错误输出重定向（Redirecting Standard Output and Standard Error）
 format:
