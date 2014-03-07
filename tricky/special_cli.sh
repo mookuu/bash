@@ -21,3 +21,6 @@
 # |: FIFO file
 # add nothing: regular file
 # ★★★★★★★★★★★★★★★★★★★★ #
+
+# clear file's contents
+command < file > file
