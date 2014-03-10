@@ -146,6 +146,7 @@ main()
         esac
 }
 
+# Usage added
 if [ $# -lt 2 ]; then
         echo "usage:"
         echo "$0 [r|R] files|directory"
