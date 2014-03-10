@@ -89,7 +89,7 @@ bkup_main_func()
             [[ ${line_content} == *${BOOK3} ]]; then # regular expression
             # echo "File<$line_content> found!"
             src_path=$BKUP_SRC_PATH$line_content # bkup file's full path
-            if [ a$2 == a ]; then
+            if [ x$2 == x ]; then
                 dst_path=$BKUP_PATH_DEFAULT # if not specify bkup folder, use the default
                 echo "[DBG]: Default folder: path $dst_path"
             else
@@ -132,12 +132,12 @@ main()
         \?|@|\#|\;|/|\||$|%$|\&|\<|\>|\'|\")
             echo "[DBG]: Specifial characters should be avoid in shell"
             ;;
-        u|U)
+        r|R)
             echo "[DBG]: Update mode."
             # update files
             update_main_func $UPDATE_PATH_SRC && exit 0
             ;;
-        *)
+        b|B)
             echo "[DBG]: Bkup mode(default)."
             # echo -e "\n\n test newline"
             # backup files
@@ -146,6 +146,13 @@ main()
         esac
 }
 
-main $1 $2
-
-exit 0
+if [ $# -lt 2 ]; then
+        echo "usage:"
+        echo "$0 [r|R] files|directory"
+        echo "    restore files or directory"
+        echo "$0 [b|B] files|directory "
+        echo "    backup files or directory"
+        exit 0
+else
+        main $1 $2
+fi
