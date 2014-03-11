@@ -148,11 +148,11 @@ main()
 
 # Usage added
 if [ $# -lt 2 ]; then
-        echo "usage:"
-        echo "$0 [r|R] files|directory"
-        echo "    restore files or directory"
-        echo "$0 [b|B] files|directory "
-        echo "    backup files or directory"
+        echo "Usage:"
+        echo " $0 [options]"
+        echo "Options:"
+        echo " -b, --backup    backup files or directory"
+        echo " -r, --resume    restore files or directory"
         exit 0
 else
         main $1 $2
