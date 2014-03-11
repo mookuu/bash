@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 if [ -f "test_dir" ]; then
     echo "file!"
