@@ -29,6 +29,6 @@ R=$(cat /etc/os-release)
 arch=$(uname -m)
 echo "$R"
 echo
-echo "arch"
+echo "$arch"
 
 exit 0
