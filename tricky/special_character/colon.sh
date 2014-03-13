@@ -52,3 +52,36 @@ TESTVARIABLES
 : ${HOSTNAME?} ${USER?} ${MAIL?}
 # Prints error message
 # If one or more of essential environmental variables not set.
+
+# M4: clear file's contents
+: > data.xxx   # File "data.xxx" now empty.
+# Same effect as   cat /dev/null >data.xxx
+# However, this does not fork a new process, since ":" is a builtin.
+
+
+# M5: use to begin a comment line(not recommended),
+# Using # for a comment turns off error checking for the remainder of that line,
+# so almost anything may appear in a comment. However, this is not the case with :.
+: This is a comment that generates an error, ( if [ $x -eq 3] ).
+
+# M6: serves as a filed separator, in /etc/passwd and in the $PATH variable
+echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+# TODO: PATH add
+
+# M7: use as a function name(not portable, not recommended)
+:()
+{
+  echo "The name of this function is "$FUNCNAME" "
+  # Why use a colon as a function name?
+  # It's a way of obfuscating your code.
+}
+
+:
+# The name of this function is :
+
+# M8: Placeholder in an oherwise empty function
+not_empty ()
+{
+  :
+} # Contains a : (null command), and so is not empty.
