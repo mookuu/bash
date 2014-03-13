@@ -19,11 +19,36 @@ do
         operation-n
 done
 
-# M2: Placeholder
+# M2_1: Placeholder
 if condition; then
-    :
-else
+    :                           # Do nothing and branch ahead
+else                            # Or else
     take-some-action
 fi
 
-# M3:
+# M2_2: placeholder where a binary operation is expected
+: ${username=`whoami`}
+# ${username=`whoami`}   Gives an error without the leading :
+#                        unless "username" is a command or builtin...
+
+: $((n = $n + 1))
+# ":" necessary because otherwise Bash attempts
+# to interpret "$((n = $n + 1))" as a command.
+
+(( n = n + 1 ))
+# A simpler alternative to the method above.
+# Thanks, David Lombard, for pointing this out.
+
+# M2_3: placeholder where a command is expected
+# HERE DOCUMENT
+: <<TESTVARIABLES
+${HOSTNAME?}${USER?}${MAIL?}  # Print error message if one of the variables not set.
+TESTVARIABLES
+# Same as
+# cat <<EOF
+# EOF
+
+# M3: Evaluate string of variables
+: ${HOSTNAME?} ${USER?} ${MAIL?}
+# Prints error message
+# If one or more of essential environmental variables not set.
