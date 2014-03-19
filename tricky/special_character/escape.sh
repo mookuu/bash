@@ -52,3 +52,48 @@ echo "\' '"
 
 echo ''\'''                     # single ' is unmatched, so \ to escape literally
 echo ''"'"''                    # same as 2 ' == "
+
+# Special Usage:
+# \" : gives the quote its literally meaning
+# \$ : gives the dollar sign its literal meaning (variable name following \$ will not be referenced)
+# \\ : gives the backslash its literal meaning
+echo ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦
+echo "Hello"                     # Hello
+echo "\"Hello\" ... he said."    # "Hello" ... he said.
+
+echo "\\"  # Results in \
+# Whereas . . .
+# echo "\"   # Invokes secondary prompt from the command-line.
+           # In a script, gives an error message.
+# However . . .
+echo '\'   # Results in \
+
+
+                      #  Simple escaping and quoting
+echo \z               #  z
+echo \\z              # \z
+echo '\z'             # \z
+echo '\\z'            # \\z
+echo "\z"             # \z
+echo "\\z"            # \z
+
+                      #  Command substitution
+echo `echo \z`        #  z
+echo `echo \\z`       #  z
+echo `echo \\\z`      # \z
+echo `echo \\\\z`     # \z
+echo `echo \\\\\\z`   # \z
+echo `echo \\\\\\\z`  # \\z
+echo `echo "\z"`      # \z
+echo `echo "\\z"`     # \z
+
+                      # Here document
+cat <<EOF
+\z
+EOF                   # \z
+
+cat <<EOF
+\\z
+EOF                   # \z
+
+# These examples supplied by Stéphane Chazelas.
