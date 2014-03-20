@@ -1,18 +1,19 @@
 ;;;
-brackets
-
-;;;
-parentheses
-
-;;;
-a sign of aggregation
+bracket
 
 
 ;;;
-parenthesis
+[  (left bracket) builtin command
+]  (right bracket) builtin command
+[[ (keyword)
 
 ;;;
-Brace
+() parenthesis/parentheses
 
 ;;;
-Left angle bracket
+{} Brace
+[] Middle brace
+
+;;;
+<  Left angle bracket
+>  right angle bracket
