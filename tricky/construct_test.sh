@@ -7,10 +7,13 @@
 # [[...]]   eg: [[ $a -lt $b ]]
 #
 # Assignment can also use for test
-# return TRUE(0) if the value in assingment is non-zero
+# return TRUE(0) if the value in assingment is non-zero/true
 # else return FALSE(1)
 # (()) -->0/1
 # let ...  -->0/1
+# The (( )) construct expands and evaluates an arithmetic expression.
+# If the expression evaluates as zero, it returns an exit status of 1, or "false".
+# A non-zero expression returns an exit status of 0, or "true".
 #
 
 (( 0 && 1 ))                 # Logical AND
