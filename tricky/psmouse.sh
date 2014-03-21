@@ -11,6 +11,8 @@ case $1 in
 	0)
 		# disable psmouse
 		sudo modprobe -r psmouse
+		# M2:
+		# sudo rmmod psmouse
 		exit 0
 		;;
 	*)
