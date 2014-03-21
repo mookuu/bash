@@ -1,7 +1,21 @@
 #!/bin/bash
 
+#
 # forbidden psmouse
-sudo modprobe psmouse
+#
 
-# enable psmouse
-sudo modprobe psmouse
+# Default enable psmouse
+[ -z $1 ] && sudo modprobe psmouse && exit 0
+
+case $1 in
+	0)
+		# disable psmouse
+		sudo modprobe -r psmouse
+		exit 0
+		;;
+	*)
+		
+		sudo modprobe psmouse
+		exit 0
+		;;
+esac
