@@ -17,6 +17,13 @@ NANO Manual
     -A (--smarthome)
         按下HOME键时，光标跳转到该行首(非空，第一个字符所处位置)。
 
+    -B (--backup)
+        保存文件时，备份修改前文件为：文件名～。
+
+
+
+
+Nano configuration file: /etc/nanorc
 
 #### HOMEPAGE
 
