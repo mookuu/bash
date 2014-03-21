@@ -14,7 +14,7 @@ case $1 in
 		exit 0
 		;;
 	*)
-		
+		# enable psmouse
 		sudo modprobe psmouse
 		exit 0
 		;;
