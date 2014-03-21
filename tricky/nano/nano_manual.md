@@ -20,4 +20,4 @@ NANO Manual
 
 #### HOMEPAGE
 
-    [http://www.nano-editor.org/](http://www.nano-editor.org/)
+    [http://www.nano-editor.org/](http://www.nano-editor.org/).
