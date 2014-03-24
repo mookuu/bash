@@ -13,17 +13,23 @@
 
 ARGS=2
 E_BADARGS=85
-
+E_NOINTEGER=86
 
 # Parameter chk
-# number chk
+# Number chk
 if [[ $# -ne "$ARGS" ]]; then
         echo "Usage: `basename $0` number1 number2"
         exit $E_BADARGS
 fi
 
-# TODO: integer chk
-#
+# Integer chk
+if ! [[ "$1" -ge 0 &&  "$2" -ge 0 ]] 2>/dev/null; then
+        echo "[ERR]: Only integer supported"
+        exit $E_NOINTEGER
+fi
+#[ "$1" -ge 0 ] && [ "$2" -ge 0 ] 2>/dev/null || exit $E_NOINTEGER
+#[[ "$1" -ge 0  &&  "$2" -ge 0 ]] 2>/dev/null || exit $E_NOINTEGER
+#[ "$1" -ge 0 -a  "$2" -ge 0 ] 2>/dev/null || exit $E_NOINTEGER # side effect, -a not short-circuit
 
 function gcd() {
         dividend=$1             # global variable
