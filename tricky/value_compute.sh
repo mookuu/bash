@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # i=3*(5+2)
+
 # M1: (())
 val1=$((3*(5+2)))
 ((val1++))
@@ -25,3 +26,27 @@ val4=`echo "$val4+1"| bc`
 val5=`echo "scale=3; 1/3"| bc -l`
 echo "val4=$val4"
 echo "val5=$val5"
+
+
+# add n by one
+n=1
+
+((n=n+1))               # n=2
+
+n=$[$n+1]               # n=3
+
+let "n=$n+1"            # n=4
+
+: $((n=$n+1))           # n=5
+
+: $[n=$n+1]             # n=6
+
+
+((n++))                 # n=7
+
+let "n++"               # n=8
+
+: $((n++))              # n=9
+
+: $[n++]                # n=10
+
