@@ -13,17 +13,23 @@
 
 ARGS=2
 E_BADARGS=85
+E_NOINTEGER=86
 
+# Parameter check
+# parameter chk 1: 2 paramter
 if [[ $# -ne "$ARGS" ]]; then
         echo "Usage: `basename $0` number1 number2"
         exit $E_BADARGS
 fi
 
-function gcd() {
-        dividend=$1
-        divisor=$2
+# TODO: parameter chk2: integer
 
-        remainder=1             # in case of null parameter
+
+function gcd() {
+        local dividend=$1
+        local divisor=$2
+
+        local remainder=1             # in case of null parameter
 
         until [ "$remainder" -eq 0 ]
         do

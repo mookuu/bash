@@ -7,7 +7,7 @@ sudo shutdown -h 0
 定时/延时关机：
 sudo shutdown -h 19:30
 19:30关机
-sudo shutdown -h +30 
+sudo shutdown -h +30
 （延时30分钟关机）
 .....
 重启：
