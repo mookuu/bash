@@ -14,100 +14,150 @@
 # TODO: popup when exit
 
 # errno
+ERR_NOROM=128
 DIR_WRONG=129
 ERR_MAKE=130
 ERR_UNKNOWN=131
 
 sudo ls > /dev/null
 # Parameter check
-[ -z $1 ] && echo "[Warning]: Parameter error, plz specify whcih firmware u want to generate."
+[ -z $1 ] && echo "[Error]: Parameter error! Plz specify whcih firmware u want to generate." && exit $ERR_NOROM
+
 
 # If not in the right /apl directory
 path=$`pwd`
+path1=${path%/apl}
+path2=${path1##*/}
 if [ ${path##*/} != apl ]; then
-        echo "[Warning]: Wrong diretory! Plz change to the '/apl' directory and excute shell agian!"
+        echo "[Error]: Wrong diretory! Plz change to the '/apl' directory and excute shell agian!"
         exit $DIR_WRONG
-else
-        path1=${path%/apl}
-        path2=${path1##*/}
-        if [ $path2 != $1 ]; then
-                echo "[Warning]: Wrong directory! Specified $1 but in $path2's directory!"
+fi
+
+function dir_chk()
+{
+	if [ $path2 != $1 ]; then
+                echo "[Error]: Wrong directory! Specified $1 but in $path2's directory!"
                 exit $DIR_WRONG
         fi
-fi
+}
 
 
 # Change code format in case of UTF8
-sudo chmod -R 766 .
-[ ./NKF euc-jp 2>/dev/null ] && echo "Code conversation successfully" || echo "[Error]: Code conversation failed!"
+sudo chmod -R 777 .
+# TODO: follow one desn`t work, why???
+# [ sudo ./NKF.sh euc-jp ] && echo "Code conversation successfully" || echo "[Error]: Code conversation failed!"
+# ./NKF.sh euc-jp 2 > 1
+if sudo ./NKF.sh euc-jp 2&>1; then
+	echo "Code conversation succeed"
+else
+	echo "[Error]: Code conversation failed"
+fi
+# TODO: all file in DVR CAM HUB should converse code
+
+
+
 
 case $1 in
     dvr|DVR)
-        ./Build.sh config DVR 2&>1
-        ./Build.sh set ../../CAM/apl 2&>1
-        ./Build.sh copy 2&>1
-        sudo ./mkallrom.sh DVR 2&>1 # what about the warning msg
+	dir_chk DVR
+        ./BUILD.sh config DVR | 2&>1
+	echo "./BUILD.sh config DVR succeed"
+        ./BUILD.sh set ../../CAM/apl | 2&>1
+	echo "./BUILD.sh set ../../CAM/apl succueed"
+        ./BUILD.sh copy | 2&>1
+	echo "./BUILD.sh copy succeed"
+        sudo ./mkallrom.sh DVR | 2&>1 # what about the warning msg
         if [ $? -ne 0 ]; then
-                echo "[Error]: error happened when make rom."
-                exit ERR_MAKE
+                echo "[Error]: error happened when execute ./makeallrom.sh DVR"
+                exit $ERR_MAKE
         else
-                echo "$1\'s frimware generated succuessfully."
+		echo "sudo ./mkallrom.sh DVR succeed"
+                echo "DVR frimware generated succuessfully"
         fi
         ;;
     cnv|CNV)
-        ./Build.sh config CNV 2&>1
-        ./Build.sh set ../../CAM/apl 2&>1
-        ./Build.sh copy 2&>1
-        sudo ./mkallrom.sh CNV 2&>1 # what about the warning msg
+	dir_chk DVR
+        ./BUILD.sh config CNV | 2&>1
+	echo "./BUILD.sh config CNV susseed"
+        ./BUILD.sh set ../../CAM/apl | 2&>1
+	echo "./BUILD.sh set ../../CAN/apl succeed" 
+        ./BUILD.sh copy | 2&>1
+	echo "./BUILD.sh copy succeed"
+        sudo ./mkallrom.sh CNV | 2&>1 # what about the warning msg
         if [ $? -ne 0 ]; then
-                echo "[Error]: error happened when make rom."
-                exit ERR_MAKE
+		echo "[Error]: error happened when make rom"
+                exit $ERR_MAKE
         else
-                echo "$1\'s frimware generated succuessfully."
+		echo "sudo ./mkallrom.sh CNV succeed"
+                echo "CNV frimware generated succuessfully"
         fi
         ;;
     1CH|1ch)
-        ./Build config 1Ch
-        ./Build target ALL
-        ./Build all
+	dir_chk CAM
+        ./BUILD.sh config 1CH | 2&>1
+	echo "./BUILD.sh config 1Ch succeed"
+        ./BUILD.sh target ALL | 2&>1
+	echo "./BUILD.sh target ALL succeed"
+        ./BUILD.sh all | 2&>1
         if [ $? -ne 0 ]; then
-                echo "[Error]: error happened when make rom."
-                exit ERR_MAKE
+                echo "[Error]: error happened when ./BUILD.sh all"
+                exit $ERR_MAKE
         else
-                echo "$1\'s frimware generated succuessfully."
-        fi
-        cd mkrom
-        sudo ./makerom.sh
+		echo "./BUILD.sh all succeed"
+	fi
+	cd mkrom | 2&>1
+	sudo ./makerom.sh | 2&>1
+	if [ $? -ne 0 ]; then
+		echo "[Error]+ error happened when make rom"
+		exit $ERR_NAME
+	else
+        	echo "CAM_1CH frimware generated succuessfully"
+	fi
         ;;
     FULLHD|fullhd|FH|fh)
-        ./Build config FULLHD
-        ./Build target ALL
-        ./Build all
+	dir_chk CAM
+        ./BUILD.sh config FULLHD | 2&>1
+        ./BUILD.sh target ALL | 2&>1
+        ./BUILD.sh all | 2&>1
         if [ $? -ne 0 ]; then
-                echo "[Error]: error happened when make rom."
-                exit ERR_MAKE
+                echo "[Error]: error happened when ./BUILD.sh all"
+                exit $ERR_MAKE
         else
-                echo "$1\'s frimware generated succuessfully."
+                echo "CAM_FULLHD frimware generated succuessfully"
         fi
-        cd mkrom
-        sudo ./makerom.sh
+        cd mkrom | 2&>1
+        sudo ./makerom.sh | 2&>1
+        if [ $? -ne 0 ]; then
+                echo "[Error]+ error happened when make rom"
+                exit $ERR_NAME
+        else
+                echo "CAM_1CH frimware generated succuessfully"
+        fi
         ;;
     HUB|hub)
-        ./BUILD.sh set_cam ../../CAM/apl/
-        ./BUILD.sh set_dvr ../../DVR/apl/
-        ./BUILD.sh copy
-        ./BUILD.sh all
+	dir_chk HUB
+        ./BUILD.sh set_cam ../../CAM/apl/ | 2&>1
+        ./BUILD.sh set_dvr ../../DVR/apl/ | 2&>1
+        ./BUILD.sh copy | 2&>1
+        ./BUILD.sh all | 2&>1
         if [ $? -ne 0 ]; then
                 echo "[Error]: error happened when make rom."
-                exit ERR_MAKE
+                exit $ERR_MAKE
         else
-                echo "$1\'s frimware generated succuessfully."
+                echo "HUB frimware generated succuessfully."
         fi
-        cd ./mkrom
-        sudo ./makerom.sh
+        cd ./mkrom | 2&>1
+        sudo ./makerom.sh | 2&>1
+        if [ $? -ne 0 ]; then
+                echo "[Error]+ error happened when sudo ./makerom.sh"
+                exit $ERR_NAME
+        else
+                echo "HUB frimware generated succuessfully"
+        fi
+	;;
     *)
         echo "ROM name error, plz specifiy again!"
-        exit ERR_UNKNOWN
+        exit $ERR_UNKNOWN
         ;;
 esac
 
