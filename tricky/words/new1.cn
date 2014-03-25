@@ -7,3 +7,5 @@ all generate
 short circuit 短路测试
 
 critical bugs致命错误
+
+filename globbing文件名匹配
