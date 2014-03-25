@@ -5,3 +5,5 @@ dedicated command 专用命令
 all generate 
 
 short circuit 短路测试
+
+critical bugs致命错误
