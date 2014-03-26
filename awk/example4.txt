@@ -1,0 +1,24 @@
+dn: uid=cailiying,domain=ccc.com.cn,o=mail.ccc.com.cn
+uid: cailiying
+userPassword:: e21kNX0zREl4VEIwODBJdXZkTnU3WFFtS3lRPT0=
+letters: 300
+quota: 100
+
+dn: uid=caixiaoning,domain=ccc.com.cn,o=mail.ccc.com.cn
+userPassword:: e21kNX1kejFXU0doZWprR2RNYnV5ajJJRWl3PT0=
+letters: 300
+quota: 100
+uid: chenzheng
+domain: cqc.com.cn
+
+dn: uid=caixiaoning,domain=ccc.com.cn,o=mail.ccc.com.cn
+userPassword:: e21kNX1kejFXU0doZWprR2RNYnV5ajJJRWl3PT0=
+letters: 300
+quota: 100
+
+dn: uid=caixiaoning,domain=ccc.com.cn,o=mail.ccc.com.cn
+userPassword:: e21kNX1kejFXU0doZWprR2RNYnV5ajJJRWl3PT0=
+letters: 300
+quota: 100
+uid: chenzheng
+domain: cqc.com.cn
