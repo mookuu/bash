@@ -27,7 +27,7 @@ $*
 # When shell start or set option
 $-
 
-# Current shell pid
+# PID of the script itself. Even inside a subshell, it returns parent PID
 $$
 
 # Current sheel name
@@ -39,3 +39,5 @@ $n
 # PID of last job running in background
 $!
 
+# Special variable (which is)set to final argument of previous command executed
+$_

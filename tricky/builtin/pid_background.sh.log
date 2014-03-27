@@ -1,0 +1,18 @@
+Logging PIDs background commands for script: ./pid_background.sh
+
+PID of "sleep 100":  33776
+Logging PIDs background commands for script: pid_background.sh
+
+PID of "sleep 100":  33786
+Logging PIDs background commands for script: pid_background.sh
+
+PID of "sleep 100":  33803
+current shell pid: 33801
+Logging PIDs background commands for script: pid_background.sh
+
+PID of "sleep 100":  33814
+Pid of pid_background.sh: 33812
+
+Logging PIDs background commands for script: pid_background.sh
+PID of "sleep 100":  33819
+Pid of pid_background.sh: 33817
