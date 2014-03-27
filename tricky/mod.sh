@@ -12,7 +12,7 @@ F_SHELL=sh
 # [ -z $1 ] && echo "null parameter" && exit 0
 if [ $# -lt 1 ]; then
         echo "Usage:"
-        echo "`basename $0` file\|directory"
+        echo "   `basename $0` file|directory"
         exit 0
 fi
 
@@ -25,7 +25,8 @@ mod_main() {
         # echo "[DBG]: Path-> `pwd`"
 	if [ -f $1 ] && [ "${1##*.}" = "$F_SHELL" ]; then
 		echo "Regular file: `pwd`/$1"
-		sudo chmod 755 $1
+		# sudo chmod 755 $1	# in case of overstep authority
+		chmod 755 $1
 
         elif [ -d $1 ]; then
 		# Read directory
@@ -39,13 +40,14 @@ mod_main() {
 	else
 		# TODO: default to regualr files, pipe, sockets...
 		echo "Other file: `pwd`/$1"
-		sudo chmod 644 $1
+		sudo chmod 644 $1	# in case of overstep authority
+		chmod 644 $1
 	fi
 }
 
 mod_main $1
 # return value chk
-[ "$?" -ne "$RTN_VALUE" ] && exit $ERR_UNKNOWN
+[ "$?" -ne "$RTN_VALUE" ] && echo "[ERR]: Mod change failed" && exit $ERR_UNKNOWN
 
 echo "Mod change succeed"
 echo
