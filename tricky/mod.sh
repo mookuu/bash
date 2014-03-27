@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 #
 # Change file's privilege automatically
@@ -22,22 +22,23 @@ mod_main() {
 	local cur_dir
 
 	# regular files
+        # echo "[DBG]: Path-> `pwd`"
 	if [ -f $1 ] && [ "${1##*.}" = "$F_SHELL" ]; then
 		echo "Regular file: `pwd`/$1"
 		sudo chmod 755 $1
-        #################################
-        # elif [ -d $1 ]; then          #
-        #         # Read directory      #
-        #         echo "Directory: $1"  #
-        #         cd $1 && cur_dir=`ls` #
-        #         for val in $cur_dir   #
-        #         do                    #
-        #                 mod_main $val #
-        #         done                  #
-        #################################
+
+        elif [ -d $1 ]; then
+		# Read directory
+		echo "Directory: `pwd`/$1"
+		cd $1 && cur_dir=`ls`
+		for val in $cur_dir
+		do
+			mod_main $val
+	        done
+                cd ..           # change dir
 	else
 		# TODO: default to regualr files, pipe, sockets...
-		echo "Other file: $1"
+		echo "Other file: `pwd`/$1"
 		sudo chmod 644 $1
 	fi
 }
