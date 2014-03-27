@@ -5,11 +5,12 @@
 #       -F, --classify
 #              append indicator (one of */=>@|) to entries
 #
-# *: executable file
-# /: directory
-# =: socket file
-# >: TODO
-# @: link file
-# |: FIFO file, PIPE file
 # add nothing: regular file
+# /: directory
+# *: executable file
+# @: link file
+# =: socket file
+# |: FIFO file, PIPE file
+# >: TODO
+
 # ★★★★★★★★★★★★★★★★★★★★ #

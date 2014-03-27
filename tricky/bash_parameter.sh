@@ -26,3 +26,6 @@ $0
 
 # Parameter position
 $n
+
+# PID of last job running in background
+$! 
