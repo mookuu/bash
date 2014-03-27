@@ -1,17 +1,14 @@
 #!/bin/bash
 
-#
-# Positional parameters
-$0
-$1
-$2
+# Arguments from CLI
+echo "$2"                       # Arguments passed to the script from command line: $1, $2, $3...
+echo "$1"
+echo "$3"
 ...
+echo ${10}                      # Arguments greater than 9 must be enclosed in brackets.
 
-# Number of CLI arguments or positional parameters
-$#
+# Other special command
+$#                              # Numbers of arguments passed by
+$*                              # Numbers of arguments passed by
 
-# All of the positional parameters, senn as a single word
-$*	# "$*" must be quoted
-
-# All of the positional parameters, each parameter is a quoted string
-$@
+${!#}                           # Get last argument
