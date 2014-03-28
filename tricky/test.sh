@@ -1,5 +1,8 @@
 #!/bin/bash
 
-echo $'\x1b\x4f\x48'a
+NUMBER=10
 
-echo $'\OH'
+for i in $(seq $NUMBER)
+do
+    echo $i
+done

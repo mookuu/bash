@@ -38,70 +38,70 @@ NUMSLOTS=21           # Number of slots at bottom of board.
 
 
 Initialize_Slots () { # Zero out all elements of the array.
-for i in $( seq $NUMSLOTS )
-do
-  Slots[$i]=0
-done
+        for i in $( seq $NUMSLOTS )
+        do
+                Slots[$i]=0
+        done
 
-echo                  # Blank line at beginning of run.
-  }
+        echo                  # Blank line at beginning of run.
+}
 
 
 Show_Slots () {
-echo; echo
-echo -n " "
-for i in $( seq $NUMSLOTS )   # Pretty-print array elements.
-do
-  printf "%3d" ${Slots[$i]}   # Allot three spaces per result.
-done
+        echo; echo
+        echo -n " "
+        for i in $( seq $NUMSLOTS ) # Pretty-print array elements.
+        do
+                printf "%3d" ${Slots[$i]} # Allot three spaces per result.
+        done
 
-echo # Row of slots:
-echo " |__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|"
-echo "                                ||"
-echo #  Note that if the count within any particular slot exceeds 99,
-     #+ it messes up the display.
-     #  Running only(!) 500 passes usually avoids this.
-  }
+        echo # Row of slots:
+        echo " |__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|"
+        echo "                                ||"
+        echo #  Note that if the count within any particular slot exceeds 99,
+        #+ it messes up the display.
+        #  Running only(!) 500 passes usually avoids this.
+}
 
 
-Move () {              # Move one unit right / left, or stay put.
-  Move=$RANDOM         # How random is $RANDOM? Well, let's see ...
-  let "Move %= RANGE"  # Normalize into range of 0 - 2.
-  case "$Move" in
-    0 ) ;;                   # Do nothing, i.e., stay in place.
-    1 ) ((POS--));;          # Left.
-    2 ) ((POS++));;          # Right.
-    * ) echo -n "Error ";;   # Anomaly! (Should never occur.)
-  esac
-  }
+Move () {                    # Move one unit right / left, or stay put.
+        Move=$RANDOM         # How random is $RANDOM? Well, let's see ...
+        let "Move %= RANGE"  # Normalize into range of 0 - 2.
+        case "$Move" in
+            0 ) ;;                   # Do nothing, i.e., stay in place.
+            1 ) ((POS--));;          # Left.
+            2 ) ((POS++));;          # Right.
+            * ) echo -n "Error ";;   # Anomaly! (Should never occur.)
+        esac
+}
 
 
 Play () {                    # Single pass (inner loop).
-i=0
-while [ "$i" -lt "$ROWS" ]   # One event per row.
-do
-  Move
-  ((i++));
-done
+        i=0
+        while [ "$i" -lt "$ROWS" ]   # One event per row.
+        do
+                Move
+                ((i++))
+        done
 
-SHIFT=11                     # Why 11, and not 10?
-let "POS += $SHIFT"          # Shift "zero position" to center.
-(( Slots[$POS]++ ))          # DEBUG: echo $POS
+        SHIFT=11                     # Why 11, and not 10?
+        #echo "$POS " >>count.txt
+        let "POS += $SHIFT"          # Shift "zero position" to center.
+        (( Slots[$POS]++ ))          # DEBUG: echo $POS
 
-# echo -n "$POS "
-
-  }
+        # echo -n "$POS " >>count.txt
+}
 
 
 Run () {                     # Outer loop.
-p=0
-while [ "$p" -lt "$PASSES" ]
-do
-  Play
-  (( p++ ))
-  POS=0                      # Reset to zero. Why?
-done
-  }
+        p=0
+        while [ "$p" -lt "$PASSES" ]
+        do
+                Play
+                (( p++ ))
+                POS=0                      # Reset to zero. Why?
+        done
+}
 
 
 # --------------
@@ -121,3 +121,14 @@ exit $?
 #     Will this make the results more random?
 #  3) Provide some sort of "animation" or graphic output
 #     for each marble played.
+
+
+
+# for m=500  # generate 500 random integers
+#     mid=11
+#     n=10
+#         random%3 # 0: stay 1: right move 2: left move
+#         pos++
+#     pos=mid+pos
+#     arr[pos]++  # counter in 500
+# for end
