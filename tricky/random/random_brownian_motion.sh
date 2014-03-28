@@ -66,6 +66,7 @@ Show_Slots () {
 
 Move () {                    # Move one unit right / left, or stay put.
         Move=$RANDOM         # How random is $RANDOM? Well, let's see ...
+        # Move=$/dev/urandom
         let "Move %= RANGE"  # Normalize into range of 0 - 2.
         case "$Move" in
             0 ) ;;                   # Do nothing, i.e., stay in place.
