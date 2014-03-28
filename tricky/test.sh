@@ -1,5 +1,20 @@
-#!/bin/bash
+#!/bin/bash -x
 
-echo $'\x1b\x4f\x48'a
+TIME="00:20:00"
 
-echo $'\OH'
+while [ `date +%X` != "$TIME" ]
+do
+    sleep 1
+done
+
+func() {
+    echo "background function"
+}
+
+sleep 10 && func &
+
+
+
+echo "equal"
+
+exit 0

@@ -1,7 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ -z $1 ]; then
-        echo "parameter null"
-else
-        echo "parameter OK"
-fi
+va=echo "$va"
