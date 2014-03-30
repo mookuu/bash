@@ -48,7 +48,7 @@ if [ ${1##*.} == bz2 ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
                 tar jxvf $1     # uncompress package
-                # tar jcvf test.tar.bz2 directory_name # compress package
+                # tar jcvf test.tar.bz2 ${1%%.*} # compress package
                 UNPACK=$?       # get last code's result
                 echo This is a tar.bz2 package.
         else
@@ -65,13 +65,13 @@ if [ ${1##*.} == gz ]; then
         if [ ${TMP##*.} == tar ]; then
                 tar zxvf $1
                 # tar zxvf $1 -C ./test # decompress to specify folder
-                # tar zcvf test.tar.gz directory_name # compress package
+                # tar zcvf test.tar.gz ${1%%.*} # compress package
                 UNPACK=$?
                 echo This is a tar.gz package.
         else
                 gunzip $1
                 # gzip -d $1
-                # gzip directory_name # compress package
+                # gzip ${1} # compress package
                 UNPACK=$?
                 echo This is a gz package.
         fi
@@ -81,15 +81,15 @@ fi
 if [ ${1##*.} == tgz ]; then
         tar zxvf $1
         # tar zxvf $1 -C ./test # decompress to specify folder
-        # tar zcvf test.tgz directory_name # compress package
+        # tar zcvf test.tgz ${1%%.*} # compress package
         UNPACK=$?
         echo This is a tgz package.
 fi
 
 # .zip package
 if [ ${1##*.} == zip ]; then
-        unzip $1 -d directory_name
-        # zip test.zip directory_name
+        unzip $1 -d ${1%%.*}
+        # zip test.zip ${1}
         UNPACK=$?
         echo This is a zip package.
 fi
@@ -104,7 +104,7 @@ if [ ${1##*.} == rar ]; then
                 mkdir ${1%%.*} && cp "$1" "$_" && cd "$_"
         fi
         rar x "${1##*\/}" && rm "$_" && cd -
-        # rar a test.zip directory_name
+        # rar a test.zip ${1}
         UNPACK=$?
         echo This is a rar package.
 fi
@@ -145,5 +145,6 @@ fi
 if [ $UNPACK == 0 ]; then
         echo Succes!
 else
-        echo Maybe it is not a package or the package is damaged?
+        echo Failed!
+        echo Maybe it is not a package or the package is broken?
 fi
