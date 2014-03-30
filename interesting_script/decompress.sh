@@ -10,7 +10,14 @@
 # .tar | .bz | .tar.bz | .bz2 | .tar.bz2 | .gz | .tar.gz
 # .tgz | .zip | .rar | .Z | .tar.Z | .lha | .xz
 
+# TODO: `pwd` add
+# decompress /home/Downloads/test.gzip
+
 UNPACK=1                        # rtn: [OK:0] [NG:1]
+E_DIRWRONG=85
+
+# compressed file's directory
+# CUR_DIR=`pwd`
 
 # .tar package
 if [ ${1##*.} == tar ]; then
@@ -89,7 +96,14 @@ fi
 
 # .rar package
 if [ ${1##*.} == rar ]; then
-        rar x $1
+        # Filename
+        if [ -d "${1%%.*}" ]; then
+                echo "Directory exists, overwriten?"
+                echo "errno: $E_DIRWRONG" && exit "$E_DIRWRONG"
+        else
+                mkdir ${1%%.*} && cp "$1" "$_" && cd "$_"
+        fi
+        rar x "${1##*\/}" && rm "$_" && cd -
         # rar a test.zip directory_name
         UNPACK=$?
         echo This is a rar package.
