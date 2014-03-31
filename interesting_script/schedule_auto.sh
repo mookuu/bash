@@ -28,7 +28,7 @@ fi
 
 # echo "recall from background"
 
-[ -d `date +%b` ] || mkdir `date +%b`
+[ -d `date +%b` ] && echo "Directory already exists" || mkdir `date +%b`
 cd `date +%b`
 # [ ! -f `date +%Y-%m-%d`.md ]
 touch `date +%Y-%m-%d`.md && chmod 644 `date +%Y-%m-%d`.md
@@ -49,9 +49,10 @@ Int14Vector() {
 	git add `date +%Y-%m-%d`.md
 	git commit -m "Schedule of `date -d today`"
 	git push origin master
+        # push error
 	[ "$RET" -ne "$?" ] && echo "Error: error occured when pushing." \
-		&& exit $E_PUSHERR
-
+            && exit $E_PUSHERR
+        # push OK
 	echo "Schedule added success"
 	exit $TIMER_INTEERRUPT
 }
