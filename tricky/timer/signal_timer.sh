@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 TIMER_INTEERRUPT=14
 TIME_LIMIT=5
@@ -11,7 +11,7 @@ Int14Vector() {
 }
 
 PrintAnswer() {
-    if [ $answer = TIMEOUT ]; then
+    if [ x$answer = x"TIMEOUT" ]; then
         echo $answer
     else
         echo Input answer: $answer # TimerOn function no longer needed
