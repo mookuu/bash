@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Change to workspace quickly
 
@@ -15,7 +15,7 @@ case $1 in
 	s|S)
 		cd /home/kohata/work/cs/schedule
 		;;
-	emacs)
+	ema|emacs)
 		cd /home/kohata/work/cs/productivity/emacs	# emacs
 		;;
 	md|markdown)
