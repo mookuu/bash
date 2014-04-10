@@ -1,3 +1,0 @@
-user1:password1:username1:unit1:10
-user2:password2:username2:unit2:20
-user3:password3:username3:unit3:30
