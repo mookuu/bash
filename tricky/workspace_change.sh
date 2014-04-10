@@ -28,7 +28,16 @@ case $1 in
 		cd /home/kohata/work/cs/bash/interesting_script	# /bash/inter*
 		;;
 	sch|plan)
-		cd /home/kohata/work/cs/schedule
+		cd /home/kohata/work/cs/planning
+		;;
+	git|github)
+		cd /home/kohata/work/cs/productivity/github
+		;;
+	awk)
+		cd /home/kohata/work/cs/bash/awk_sed/awk
+		;;
+	sed)
+		cd /home/kohata/work/cs/bash/awk_sed/sed
 		;;
 	*)
 		cd  /home/kohata/work/cs/bash # workspace 1: bash
