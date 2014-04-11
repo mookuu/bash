@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #  Automatically add, commit, push files to github
 #
