@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 # 1: add a schedule
 # "crontab -e"
@@ -8,7 +8,6 @@
 # or
 # sudo /etc/init.d/cron resart
 #
-
 # github_src_v2
 # update:
 #	 trace log added
@@ -26,8 +25,9 @@ R_FAILED=1		# fail
 E_NETUNREACH=101	# errno
 GIT_REMOTE_BRANCH=origin
 LOG_POS=/home/ndvr/public/source/log/trace.log	# trace log
+GITHUB_ORIGIN=/home/ndvr/public/source/github_origin	# github temporary src directory
 
-# Source directory
+# Source directory-for enconde change
 D_CNT=3
 D_MAC[0]=/CAM/apl
 D_MAC[1]=/DVR/apl
@@ -37,8 +37,11 @@ D_MAC[2]=/HUB/apl
 # Src get
 src_get()
 {
-	[ -d .git ] || git init
-	[ $GIT_REMOTE_BRANCH = `git remote` ] || \
+	# Clear all temporary files in case of __Merge__
+	[ -d .git ] && rm -fr * && rm -fr .git
+	# Initialization
+	git init
+	[ x$GIT_REMOTE_BRANCH = x`git remote` ] || \
 		git remote add origin git@github.com:mcc-system/NDVR.git
 
 	# ph2, ph3 or other branches
@@ -64,8 +67,7 @@ src_get()
 		while [ $RETRY_CNT -lt $RETRY_MAX ] && [ $R_RESULT != $R_SUCCEED ]
 		do
 			((RETRY_CNT++))
-			echo "Download failed! Will retry in 10 minutes." >>$LOG_POS
-			echo "errno: [$E_NETUNREACH]" >>$LOG_POS
+			echo "Download failed! Will retry in 30 minutes. [errno: $E_NETUNREACH]" >>$LOG_POS
 			sleep $TIMELIMIT && echo "Retry[$RETRY_CNT]" >>$LOG_POS && src_get $1
 			# end loop???
 		done
@@ -73,15 +75,16 @@ src_get()
 }
 
 # Trace log added @20140409 by H
-echo "-----------------------------" >>$LOG_POS
+echo "----------------------------------------------------------------------"  >>$LOG_POS
 echo "`date +%Y-%m-%d`" >>$LOG_POS
 
 # Pre-processing
 # mkdir /home/ndvr/public/hanbo/github_origin && cd $_
 if [ -d /home/ndvr/public/source/github_origin ]; then
-	cd /home/ndvr/public/source/github_origin
+	cd $GITHUB_ORIGIN
 else
-	mkdir /home/ndvr/public/source/github_origin && cd $_
+	#mkdir /home/ndvr/public/source/github_origin && cd $_
+	mkdir $GITHUB_ORIGIN && cd $GITHUB_ORIGIN
 fi
 [ -d ../`date +%Y-%m-%d`-ph2 ] || mkdir ../`date +%Y-%m-%d`-ph2
 [ -d ../`date +%Y-%m-%d`-ph3 ] || mkdir ../`date +%Y-%m-%d`-ph3
