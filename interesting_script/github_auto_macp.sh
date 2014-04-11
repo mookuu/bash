@@ -34,17 +34,27 @@ if [ -z $1 ]; then
 fi
 #  Customize comment
 if [ $GIT_COMMENT = $1 ]; then
-	if [ -f $2 ] || [ -d $2 ]; then
-		usage
-	else
-		GIT_COMMENT_CUSTOMIZE=$D_COM_TRUE
-		shift 2
-		#  Parameter chk
-		if [ -z $1 ]; then
+	str=$2
+	echo "[DBG]: [L38] $2"
+	# If parameters contains '-m' but without customize comment
+	# TODO:
+	#     ag -m "test.sh"
+	#     specified customize comment but notify not
+	#     should determine " in $2
+	if [ "x${str##* }" = "x$str" ]; then	# If comment doesn't contains blank
+		if [ -f $2 ] || [ -d $2 ]; then
+			echo "[DBG]: Specify '-m' but without customize comment"
 			usage
 		fi
-		echo "[DBG]: Shift the parameter"
 	fi
+	GIT_COMMENT_CUSTOMIZE=$D_COM_TRUE
+	shift 2
+	echo "[DBG]: First file[$1]"
+	#  Parameter chk
+	if [ -z $1 ]; then
+		usage
+	fi
+	echo "[DBG]: Shift the parameter"
 fi
 #  File(s)
 if [ -f $1 ]; then
