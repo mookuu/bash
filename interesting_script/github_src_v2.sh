@@ -25,6 +25,7 @@ R_FAILED=1		# fail
 E_NETUNREACH=101	# errno
 GIT_REMOTE_BRANCH=origin
 LOG_POS=/home/ndvr/public/source/log/trace.log	# trace log
+NEW_SRC_POS=/home/ndvr/public/source/		# newest ph2 and ph3 src position
 GITHUB_ORIGIN=/home/ndvr/public/source/github_origin	# github temporary src directory
 
 # Source directory-for enconde change
@@ -56,7 +57,7 @@ src_get()
 	# rtn chk
 	if [ "$?" -eq "$RET" ]; then
 		chmod 755 -R *
-		mv * ../`date +%Y-%m-%d`-$1
+		mv -f * ../`date +%Y-%m-%d`-$1
 		echo "Download succeed."
 		R_RESULT=$R_SUCCEED
 	else
@@ -111,11 +112,18 @@ cd .. && rm -fr /home/ndvr/public/source/github_origin
 # Encode change
 for val in ${D_MAC[@]}
 do
-	cd `date +%Y-%m-%d`-ph2$val && `./NKF.sh euc-jp` && cd -
-	cd `date +%Y-%m-%d`-ph3$val && `./NKF.sh euc-jp`
-	[ $? -ne $RET ] && echo "Error: error occured when change encode." >>$LOG_POS && echo "$?"
+	# Use absolutely path instead
+        # NKF.sh already a shell, `` is not necessary
+	# Modified @20140411 by H
+	cd $NEW_SRC_POS`date +%Y-%m-%d`-ph2$val && ./NKF.sh euc-jp
+	[ $? -ne $RET ] && echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
+	# cd `date +%Y-%m-%d`-ph2$val && `./NKF.sh euc-jp` && cd -
+	cd $NEW_SRC_POS`date +%Y-%m-%d`-ph3$val && ./NKF.sh euc-jp
+	# cd `date +%Y-%m-%d`-ph3$val && `./NKF.sh euc-jp`
+	[ $? -ne $RET ] && echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
 done
 
 echo "Source download successful."
+echo "Source download successful." >>$LOG_POS
 
 exit 0
