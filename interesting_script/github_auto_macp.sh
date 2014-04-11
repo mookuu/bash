@@ -47,6 +47,7 @@ if [ $GIT_COMMENT = $1 ]; then
 			usage
 		fi
 	fi
+	COMMENT_CUSTOMIZE=$2
 	GIT_COMMENT_CUSTOMIZE=$D_COM_TRUE
 	shift 2
 	echo "[DBG]: First file[$1]"
@@ -86,7 +87,7 @@ fi
 #  Commit files to History
 if [ $D_COM_TRUE -eq $GIT_COMMENT_CUSTOMIZE ]; then
 	echo "[DBG]: Customize comment"
-	git commit -m "$2 `date +%Y-%m-%d\ %T`"
+	git commit -m "$COMMENT_CUSTOMIZE `date +%Y-%m-%d\ %T`"
 else
 	echo "[DBG]: Defaule comment"
 	git commit -m "Kohata@nj `date +%Y-%m-%d\ %T`"
