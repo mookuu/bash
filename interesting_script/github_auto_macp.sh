@@ -97,3 +97,5 @@ fi
 #  Push files to github
 git push origin master
 [ $? -ne $RET ] && echo "Error happend when push" && exit $E_PUSH_ERR
+
+exit
