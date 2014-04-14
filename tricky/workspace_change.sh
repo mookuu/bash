@@ -27,7 +27,7 @@ case $1 in
 	int|interesting)
 		cd /home/kohata/work/cs/bash/interesting_script	# /bash/inter*
 		;;
-	sch|plan)
+	sch|pla|plan)
 		cd /home/kohata/work/cs/planning
 		;;
 	git|github)
