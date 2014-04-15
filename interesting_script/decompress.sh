@@ -21,7 +21,9 @@ E_DIRWRONG=85
 
 # .tar package
 if [ ${1##*.} == tar ]; then
-        tar xvf $1
+	[ -d ${1%%.tar} ] || mkdir ${1%%.tar}
+	cp $1 $_ && cd $_
+        tar xvf $1 && rm $1
         #tar cvf $1                  # make package
         UNPACK=$?
         echo This is a tar package.
@@ -31,11 +33,15 @@ fi
 if [ ${1##*.} == bz ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-                tar jxvf $1     # uncompress package
+		[ -d ${1%%.tar.bz} ] || mkdir ${1%%.tar.bz}
+		cp $1 $_ && cd $_
+                tar jxvf $1 && rm $1     # uncompress package
                 UNPACK=$?
                 echo This is a tar.bz package.
         else
-                bunzip2 $1
+		[ -d ${1%%.bz} ] || mkdir ${1%%.bz}
+		cp $1 $_ && cd $_
+                bunzip2 $1 && rm $1
                 # bzip -d $1      # M2
                 UNPACK=$?
                 echo This is a bz package.
@@ -47,12 +53,16 @@ fi
 if [ ${1##*.} == bz2 ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-                tar jxvf $1     # uncompress package
+		[ -d ${1%%.tar.bz2} ] || mkdir ${1%%.tar.bz2}
+		cp $1 $_ && cd $_
+                tar jxvf $1 && rm $1     # uncompress package
                 # tar jcvf test.tar.bz2 ${1%%.*} # compress package
                 UNPACK=$?       # get last code's result
                 echo This is a tar.bz2 package.
         else
-                bunzip2 $1
+		[ -d ${1%%.bz2} ] || mkdir ${1%%.bz2}
+		cp $1 $_ && cd $_
+                bunzip2 $1 && rm $1
                 # bzip -d $1      # M2
                 UNPACK=$?
                 echo This is a bz2 package.
@@ -63,13 +73,17 @@ fi
 if [ ${1##*.} == gz ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-                tar zxvf $1
+		[ -d ${1%%.tar.gz} ] || mkdir ${1%%.tar.gz}
+		cp $1 $_ && cd $_
+                tar zxvf $1 && rm $1
                 # tar zxvf $1 -C ./test # decompress to specify folder
                 # tar zcvf test.tar.gz ${1%%.*} # compress package
                 UNPACK=$?
                 echo This is a tar.gz package.
         else
-                gunzip $1
+		[ -d ${1%%.gz} ] || mkdir ${1%%.gz}
+		cp $1 $_ && cd $_
+                gunzip $1 && rm $1
                 # gzip -d $1
                 # gzip ${1} # compress package
                 UNPACK=$?
@@ -79,7 +93,9 @@ fi
 
 # .tgz package
 if [ ${1##*.} == tgz ]; then
-        tar zxvf $1
+	[ -d ${1%%.tgz} ] || mkdir ${1%%.tgz}
+	cp $1 $_ && cd $_
+        tar zxvf $1 && rm $1
         # tar zxvf $1 -C ./test # decompress to specify folder
         # tar zcvf test.tgz ${1%%.*} # compress package
         UNPACK=$?
@@ -113,12 +129,16 @@ fi
 if [ ${1##*.} == Z ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-                tar Zxvf $1
+		[ -d ${1%%.tar.Z} ] || mkdir ${1%%.tar.Z}
+		cp $1 $_ && cd $_
+                tar Zxvf $1 && rm $1
                 # tar Zcvf FileName.tar.Z DirName # compress
                 UNPACK=$?
                 echo This is a tar.Z package.
         else
-                uncompress $1
+		[ -d ${1%%.Z} ] || mkdir ${1%%.Z}
+		cp $1 $_ && cd _
+                uncompress $1 && rm $1
                 # compress directory_name # compress
                 UNPACK=$?
                 echo This is a .Z package.
@@ -127,7 +147,9 @@ fi
 
 # .lha package
 if [ ${1##*.} == lha ]; then
-        lha -e $1
+	[ -d ${1%%.lha} ] || mkdir ${1%%.lha}
+	cp $1 $_ && cd $_
+        lha -e $1 && rm $1
         # lha -a FileName.lha FileName # compress
         UNPACK=$?
         echo This is a lha package.
