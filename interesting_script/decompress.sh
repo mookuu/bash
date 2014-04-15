@@ -1,10 +1,14 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # ★★★★★★★★★★★★★★★★★★★★ #
 # Referenced: http://www.linuxsir.org/  #
 # by RyanH@osk 2014-3-1                 #
 # Email: otagao@gmail.com               #
 # ★★★★★★★★★★★★★★★★★★★★ #
+
+#
+# Update:
+#	decompress directory added by @2014-04-15 by H
 
 # Following packages are supported.
 # .tar | .bz | .tar.bz | .bz2 | .tar.bz2 | .gz | .tar.gz
@@ -104,7 +108,7 @@ fi
 
 # .zip package
 if [ ${1##*.} == zip ]; then
-        unzip $1 -d ${1%%.*}
+        unzip $1 -d ${1%%.zip}
         # zip test.zip ${1}
         UNPACK=$?
         echo This is a zip package.
@@ -113,11 +117,11 @@ fi
 # .rar package
 if [ ${1##*.} == rar ]; then
         # Filename
-        if [ -d "${1%%.*}" ]; then
+        if [ -d "${1%%.rar}" ]; then
                 echo "Directory exists, overwriten?"
                 echo "errno: $E_DIRWRONG" && exit "$E_DIRWRONG"
         else
-                mkdir ${1%%.*} && cp "$1" "$_" && cd "$_"
+                mkdir ${1%%.rar} && cp "$1" "$_" && cd "$_"
         fi
         rar x "${1##*\/}" && rm "$_" && cd -
         # rar a test.zip ${1}
