@@ -15,6 +15,7 @@ E_COMMIT_ERR=89
 E_PUSH_ERR=90
 E_PULL_ERR=91
 E_PARA_LACK=92
+E_MODE_ERR=93
 
 GIT_PULL="-p"
 GIT_PULL_EX="--pull"
@@ -47,29 +48,29 @@ usage()
         echo "          Pull source from github to local working directory."
 	echo "       -r, --remove"
 	echo "          Remove files from the working tree and the index."
-        # TODO: gg -a file(s)|directory -r file(s)|directory # unecessary
 	exit $E_PARA_ERR
 }
 
 # Commit files and push to github
 git_push()
 {
+        # TODO: Merge
         #  Commit files
         if [ $D_COM_TRUE -eq $GIT_COMMENT_FLAG ]; then
-                echo "`date +%Y/%m/%d-%T`[L58]: `basename $0` Use customize comment."
+                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] use customize comment."
                 git commit -m "$COMMENT_CUSTOMIZE `date +%Y-%m-%d\ %T`"
         else
-                echo "`date +%Y/%m/%d-%T`[L62]: `basename $0` Use default comment."
+                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] use default comment."
                 git commit -m "Kohata@nj `date +%Y-%m-%d\ %T`"
         fi
         [ $? -ne $RET ] && \
-            echo "`date +%Y/%m/%d-%T`[L66]: `basename $0` [Error] error happend when commit[errno: $E_COMMIT_ERR]." && \
+            echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] error happend when commit[errno: $E_COMMIT_ERR]." && \
             exit $E_COMMIT_ERR
 
         #  Push files to github
         git push origin master
         [ $? -ne $RET ] && \
-            echo "`date +%Y/%m/%d-%T`[L72]: `basename $0` [Error] error happend when push[errno: $E_PUSH_ERR]." && \
+            echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] error happend when push[errno: $E_PUSH_ERR]." && \
             exit $E_PUSH_ERR
 }
 
@@ -77,10 +78,10 @@ git_push()
 #  TODO: Conflict and merge
 mode_pull()
 {
-        echo "`date +%Y/%m/%d-%T`[L80]: `basename $0` [Debug] inside pull mode."
+        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside pull mode."
         git pull origin master
         [ $? -ne $RET ] && \
-            echo "`date +%Y/%m/%d-%T`[L83]: `basename $0` [Error] error happend when pull[errno: $E_PULL_ERR]." && \
+            echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] error happend when pull[errno: $E_PULL_ERR]." && \
             exit $E_PULL_ERR
         exit
 }
@@ -88,26 +89,26 @@ mode_pull()
 #  Comment mode
 mode_comment()
 {
-       echo "`date +%Y/%m/%d-%T`[L91]: `basename $0` [Debug] inside customize-comment mode."
+       echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside customize-comment mode."
        if [ -z "$1" ]; then
-               echo "`date +%Y/%m/%d-%T`[L91]: `basename $0` [Error] specify '-m' but without customize comment." && echo
+               echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] specify '-m' but without customize comment." && echo
 	       usage		# print usage
        fi
        str=$1
        if [ "x${str##* }" = "x$str" ]; then	# If comment doesn't contains blank
 	       if [ -f "$1" ] && [ -d "$1" ]; then
-                       echo "`date +%Y/%m/%d-%T`[L98]: `basename $0` [Error] specify '-m' but without customize comment." && echo
+                       echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] specify '-m' but without customize comment." && echo
 		       usage
 	       fi
        fi
        COMMENT_CUSTOMIZE=$1
-       echo "`date +%Y/%m/%d-%T`[L104]: `basename $0` [Debug] customize-comment: $COMMENT_CUSTOMIZE."
+       echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] customize-comment: $COMMENT_CUSTOMIZE."
        # shfit customize-comment
        shift 1
        # M5: gg -a -m "customize-comment" files
        # M7: gg -a files -m "customize-comment" -r files
        if [ -n "$1" ]; then
-               echo "`date +%Y/%m/%d-%T`[L110]: `basename $0` [Debug] parameter after comment: $1."
+               echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] parameter after comment: $1."
                mode_dispatch_ex "$@"
        fi
 
@@ -117,10 +118,10 @@ mode_comment()
 mode_remove()
 {
         echo "[DBG]: In remove mode"
-        echo "`date +%Y/%m/%d-%T`[L119]: `basename $0` [Debug] inside remove mode."
+        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside remove mode."
 	# Null parameter
 	if [ -z "$1" ]; then
-                echo "`date +%Y/%m/%d-%T`[L123]: `basename $0` [Error] specify '-r' but without files to remove."
+                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] specify '-r' but without files to remove."
 		usage		# print usage
 	fi
 	# Not file
@@ -128,7 +129,7 @@ mode_remove()
         if [ ! -f "$1" ] && [ ! -d "$1" ] && \
             [ $GIT_ADD_RM_COMMENT_FLAG -ne $D_COM_TRUE ] && \
             [ $GIT_RM_COMMENT_FLAG -ne $D_COM_TRUE ]; then
-                echo "`date +%Y/%m/%d-%T`[L131]: `basename $0` [Error] specify '-r' but without files to remove[errno: ]."
+                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] specify '-r' but without files to remove[errno: $E_PARA_LACK]." && echo
 	        usage		# print usage
         fi
 
@@ -144,7 +145,7 @@ mode_remove()
                         mode_dispatch_ex "$@"
                         break
                 else
-	                echo "`date +%Y/%m/%d-%T`[L147]: `basename $0` [Error] unknown file type[$1][errno: $E_UNKNOWN_FT]."
+	                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] unknown file type[$1][errno: $E_UNKNOWN_FT]."
                  	exit $E_UNKNOWN_FT
                 fi
                 shift 1
@@ -154,22 +155,26 @@ mode_remove()
 #  Add mode
 mode_add()
 {
-        echo "[DBG]: In add mode"
+	echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside add mode."
         while [ -n "$1" ]
         do
 	        if [ -f "$1" ]; then	# file
 	                git add $1
-	                [ $? -ne $RET ] && echo "Error happend when add file(s)" && exit $E_ADD_ERR
-	                echo "[DBG]: File '$1' added."
+	                [ $? -ne $RET ] && \
+                            echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] error happened when add files.[errno: $E_ADD_ERR]." && \
+                            exit $E_ADD_ERR
+	                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] file '$1' added."
 	        elif [ -d "$1" ]; then	# Directory
 	                # M1
 	                git add $1
-	                       [ $? -ne $RET ] && echo "Error happend when add file(s)" && exit $E_ADD_ERR
+	                       [ $? -ne $RET ] && \
+                                   echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] error happened when add files.[errno: $E_ADD_ERR]." && \
+                                   exit $E_ADD_ERR
 	                if [ x${1##*/} = x ]; then
 	                        tet=${1%%/}
-	                	echo "[DBG]: Directory '${tet##/}' added."
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] directory '${tet##/}' added."
 	                else
-	                        echo "[DBG]: Directory '$1' added."
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] directory '$1' added."
 	                fi
 	                # M2
 	                if false; then
@@ -189,7 +194,7 @@ mode_add()
 	                mode_dispatch_ex "$@"
 	                break
 	        else	# Unknown file type
-	                echo "[ERR]: Unknown file type[$1]"
+                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] '$1' file not exist[errno: $E_UNKNOWN_FT]."
 	                exit $E_UNKNOWN_FT
 	        fi
 	        shift 1
@@ -202,7 +207,7 @@ mode_dispatch_ex()
 {
         #  files=file|directory
         #  Case:
-        #      ----gg -a------------------------------------------------
+        #      -----------------------gg -a-----------------------------
         #      M1:  gg files                                       -->OK
         #      M2:  gg -a files                                    -->OK
         #      M3:  gg -a files -r files                           -->OK
@@ -212,7 +217,7 @@ mode_dispatch_ex()
         #      M7:  gg -a files -r -m "customize-comment" files    -->OK
         #      M8:  gg -a files -m "customize-comment" -r files    -->OK
         #      M9:  TODO: gg -am? or gg -a -m                      -->NG
-        #      ----gg -r------------------------------------------------
+        #      -----------------------gg -r-----------------------------
         #      M10: gg -r files                                    -->OK
         #      M11: gg -r files -a files                           -->OK
         #      M12: gg -r files -m "customize-comment"             -->OK
@@ -220,7 +225,7 @@ mode_dispatch_ex()
         #      M14: gg -r files -a files -m "customize-comment"    -->OK
         #      M15: gg -r files -a -m "customize-comment" files    -->OK
         #      M16: gg -r files -m "customize-comment" -a files    -->OK
-        #      ----gg -m------------------------------------------------
+        #      -----------------------gg -m-----------------------------
         #      M17: gg -m "customize-comment"(No such case)        -->NG
         #      M18: gg -m "customize-comment" -a files             -->OK
         #      M19: gg -m "customize-comment" -r files             -->OK
@@ -228,8 +233,7 @@ mode_dispatch_ex()
         #      M21: gg -m "customize-comment" -r files -a files    -->OK
 
 
-
-        echo "[DBG]: In Dispatch-extense mode."
+	echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside Dispatch-extense mode."
         if [ "$1" != "-a" ] && [ "$1" != "-m" ] && [ "$1" != "-r" ]; then
 	        # default mode(without option)--can't gurantee default mode!!!
 
@@ -244,18 +248,18 @@ mode_dispatch_ex()
                         mode_add "$@"
                 fi
         elif [ "$1" = "-m" ]; then
-                echo "[DBG]: '-m' parameter deal."
+	        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] '-m' parameter deal."
                 # shift '-m' parameter
                 shift 1
                 GIT_COMMENT_FLAG=$D_COM_TRUE
                 mode_comment "$@"
         elif [ "$1" = "-r" ]; then
-                echo "[DBG]: '-r' parameter deal."
+	        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] '-r' parameter deal."
 
                 # M13: gg -r -m "customize-comment" file
                 if [ "$2" = "-m" ]; then
                         if [ ! -f "$4" ] && [ ! -d "$4" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                         GIT_RM_COMMENT_FLAG=$D_COM_TRUE
@@ -263,7 +267,7 @@ mode_dispatch_ex()
                 # M15: gg -r files -a -m "customize-comment" files
                 if [ "$3" = "-a"] && [ "$4" = "-m" ]; then
                         if [ ! -f "$6" ] && [ ! -d "$6" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                         GIT_RM_ADD_COMMENT_FLAG=$D_COM_TRUE
@@ -273,30 +277,30 @@ mode_dispatch_ex()
                 GIT_REMOVE_FLAG=$D_COM_TRUE
                 mode_remove "$@"
 	elif [ "$1" = "-a" ]; then
-                echo "[DBG]: '-a' parameter deal."
+	        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] '-a' parameter deal."
 
                 # Special deal
                 # M5: gg -a -m "customize-comment" files
                 if [ "$2" = "-m" ]; then
                         if [ ! -f "$4" ] && [ ! -d "$4" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                         GIT_ADD_COMMENT_FLAG=$D_COM_TRUE
                 else    # gg "deal" -a files
 	                if [ -z "$2" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                         if [ ! -f "$2" ] && [ ! -d "$2" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                 fi
                 # M7: gg -a files -r -m "customize-comment" files
-                if [ "$3" = "-r"] && [ "$4" = "-m" ]; then
+                if [ x"$3" = x"-r" ] && [ x"$4" = x"-m" ]; then
                         if [ ! -f "$6" ] && [ ! -d "$6" ]; then
-                                echo "[ERR]: Specify '-a' but without files." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error]  specify '-a' but without files[errno: $E_PARA_LACK]." && echo
                                 usage		# print usage
                         fi
                         GIT_ADD_RM_COMMENT_FLAG=$D_COM_TRUE
@@ -316,34 +320,34 @@ mode_dispatch()
         # TODO: -m comment
         for val in "$@"
         do
-                echo "[DBG]: Dispatch mode."
+	        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] dispatch mode."
                 case "$val" in
                         $GIT_ADD|$GIT_ADD_EX|\
                         $GIT_REMOVE|$GIT_REMOVE_EX)
-                                echo "`date +%Y/%m/%d-%T`[L316]: `basename $0` Dispatch-extense mode." && echo
+	                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] dispatch0extense mode."
                                 mode_dispatch_ex "$@"
                                 break
                                 ;;
                         $GIT_COMMENT|$GIT_COMMENT_EX)
                                 if [ "$#" -le 2 ]; then
-                                        echo "`date +%Y/%m/%d-%T`[L321]: `basename $0` Parameter error[errno: $E_PARA_LACK]." && echo
+                                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] parameter error[errno: $E_PARA_LACK]." && echo
                                 else
                                         mode_dispatch_ex "$@"
                                 fi
                                 break
                                 ;;
                         $GIT_PULL|$GIT_PULL_EX)
-                                echo "[DBG]: Pull mode."
+                                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] pull mode."
                                 mode_pull
                                 break
                                 ;;
                         # TODO: default add mode
                         *)
                                 if [ ${1:0:1} = "-" ]; then
-                                        echo "[DBG]: '$1' unknown mode." && echo
+                                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] '$1' unknown mode[errno: $E_MODE_ERR]." && echo
                                         usage
                                 else    # TODO: file check?
-                                        echo "[DBG]: Default mode(add mode)."
+                                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] default mode(add mode)." && echo
                                         mode_add "$@"
                                 fi
                                 break
@@ -358,7 +362,7 @@ para_chk()
 {
         # Null parameter chk
 	if [ -z "$1" ]; then
-                echo "[DBG]: Null parameter!" && echo
+                echo "`date +%Y/%m/%d-%T`[L365]: `basename $0` [Error] null parameter[errno: $E_PARA_ERR]." && echo
 		usage		# print usage
 	fi
 
@@ -367,26 +371,26 @@ para_chk()
                 $GIT_REMOVE|$GIT_REMOVE_EX|\
                 $GIT_COMMENT|$GIT_COMMENT_EX)
                         if [ "$2" -lt 2 ]; then
-                                echo "[DBG]: Parameter error." && echo
+                                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] parameter error[errno: $E_PARA_ERR]." && echo
 		                usage		# print usage
                                 exit $E_PARA_ERR
                         fi
-                        echo "[DBG]: Parameter check OK."
+                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] parameter check OK."
 		        ;;
                 $GIT_PULL|$GIT_PULL_EX)
                         if [ "$2" -ne 1 ]; then
-                                echo "[DBG]: Parameter error." && echo
+                                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] parameter error[errno: $E_PARA_ERR]." && echo
 		                usage		# print usage
                                 exit $E_PARA_ERR
                         fi
-                        echo "[DBG]: Parameter check OK."
+                        echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] parameter check OK."
                         ;;
                 *)      # Default mode
          	        if [ ${1:0:1} = - ]; then
-         		        echo "[DBG]: '$1' unknown mode." && echo
+                                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] '$1' unknown mode[errno: $E_MODE_ERR]." && echo
          		        usage
           	        else    # TODO: file check?
-         		        echo "[DBG]: Parameter check OK."
+                                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] parameter check OK."
          	        fi
          	        ;;
         esac
@@ -398,18 +402,14 @@ main()
         # Parameter check
         para_chk "$1" "$#"
 
-        # Add or Remove files to stage(index)
+        # Add files to stage or remove files from stage(index)
         mode_dispatch "$@"
-
-        # TODO: merge, pull
 
         # Commit files in stage(index) to github
         git_push
 }
 
 main "$@"     # pass all CLI parameters
-
-echo "before exit"
 
 exit
 
