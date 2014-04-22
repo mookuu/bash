@@ -362,7 +362,7 @@ para_chk()
 {
         # Null parameter chk
 	if [ -z "$1" ]; then
-                echo "`date +%Y/%m/%d-%T`[L365]: `basename $0` [Error] null parameter[errno: $E_PARA_ERR]." && echo
+                echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Error] null parameter[errno: $E_PARA_ERR]." && echo
 		usage		# print usage
 	fi
 
