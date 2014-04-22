@@ -1,16 +1,17 @@
 #!/bin/bash -x
 #
 # 1: add a schedule
-# "crontab -e"
-# 0 8 * * * shell_path
+# 	"crontab -e"
+# 	0 6 * * * shell_path
 # 2: restart the cron service
-# sudo service cron restart
-# or
-# sudo /etc/init.d/cron resart
+# 	sudo service cron restart
+# 	or
+# 	sudo /etc/init.d/cron resart
 #
-# github_src_v2
+# github_src_v2 modified@20140409 by H
 # update:
-#	 trace log added
+# 	source optimize
+#	trace log added
 #
 
 RET=0			#
@@ -70,7 +71,7 @@ src_get()
 			((RETRY_CNT++))
 			echo "Download failed! Will retry in 30 minutes. [errno: $E_NETUNREACH]" >>$LOG_POS
 			sleep $TIMELIMIT && echo "Retry[$RETRY_CNT]" >>$LOG_POS && src_get $1
-			# end loop???
+			# endless loop???
 		done
 	fi
 }
@@ -104,7 +105,7 @@ if [ $R_RESULT -ne $R_SUCCEED ]; then
 	echo "*****Error: cann't download ph3 source, please check the network!*****" >>$LOG_POS
 	exit $NET_UNREACH
 fi
-# TODO: ph3_sb
+# TODO: other branch
 
 # Clear
 cd .. && rm -fr /home/ndvr/public/source/github_origin
