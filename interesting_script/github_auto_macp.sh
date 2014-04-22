@@ -30,7 +30,7 @@ GIT_COMMENT_EX="--comment"
 GIT_COMMENT_FLAG=$D_COM_FALSE
 GIT_ADD_COMMENT_FLAG=$D_COM_FALSE       # M5:  gg -a -m "customize-comment" files
 GIT_ADD_RM_COMMENT_FLAG=$D_COM_FALSE    # M7:  gg -a files -r -m "customize-comment" files
-GIT_RM_COMMENT_FLAG=$D_COM_FALSE        # M13:   gg -r -m "customize-comment" files
+GIT_RM_COMMENT_FLAG=$D_COM_FALSE        # M13: gg -r -m "customize-comment" files
 GIT_RM_ADD_COMMENT_FLAG=$D_COM_FALSE    # M15: gg -r files -a -m "customize-comment" files
 PATH_LOG=/home/kohata/work/cs/log/trace.log
 
@@ -51,10 +51,10 @@ usage()
 	exit $E_PARA_ERR
 }
 
-# Commit files and push to github
+#  Commit files and push to github
 git_push()
 {
-        # TODO: Merge
+        #  TODO: Merge
         #  Commit files
         if [ $D_COM_TRUE -eq $GIT_COMMENT_FLAG ]; then
                 echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] use customize comment."
@@ -207,30 +207,31 @@ mode_dispatch_ex()
 {
         #  files=file|directory
         #  Case:
-        #      -----------------------gg -a-----------------------------
-        #      M1:  gg files                                       -->OK
-        #      M2:  gg -a files                                    -->OK
-        #      M3:  gg -a files -r files                           -->OK
-        #      M4:  gg -a files -m "customize-comment"             -->OK
-        #      M5:  gg -a -m "customize-comment" files             -->OK
-        #      M6:  gg -a files -r files -m "customize-comment"    -->OK
-        #      M7:  gg -a files -r -m "customize-comment" files    -->OK
-        #      M8:  gg -a files -m "customize-comment" -r files    -->OK
-        #      M9:  TODO: gg -am? or gg -a -m                      -->NG
-        #      -----------------------gg -r-----------------------------
-        #      M10: gg -r files                                    -->OK
-        #      M11: gg -r files -a files                           -->OK
-        #      M12: gg -r files -m "customize-comment"             -->OK
-        #      M13: gg -r -m "customize-comment" files             -->OK
-        #      M14: gg -r files -a files -m "customize-comment"    -->OK
-        #      M15: gg -r files -a -m "customize-comment" files    -->OK
-        #      M16: gg -r files -m "customize-comment" -a files    -->OK
-        #      -----------------------gg -m-----------------------------
-        #      M17: gg -m "customize-comment"(No such case)        -->NG
-        #      M18: gg -m "customize-comment" -a files             -->OK
-        #      M19: gg -m "customize-comment" -r files             -->OK
-        #      M20: gg -m "customize-comment" -a files -r files    -->OK
-        #      M21: gg -m "customize-comment" -r files -a files    -->OK
+        #     -------------------------gg -a-------------------------------
+        #     | M1:  gg files                                       -->OK |
+        #     | M2:  gg -a files                                    -->OK |
+        #     | M3:  gg -a files -r files                           -->OK |
+        #     | M4:  gg -a files -m "customize-comment"             -->OK |
+        #     | M5:  gg -a -m "customize-comment" files             -->OK |
+        #     | M6:  gg -a files -r files -m "customize-comment"    -->OK |
+        #     | M7:  gg -a files -r -m "customize-comment" files    -->OK |
+        #     | M8:  gg -a files -m "customize-comment" -r files    -->OK |
+        #     | M9:  TODO: gg -am? or gg -a -m(ケースなし)          -->NG |
+        #     | -----------------------gg -r----------------------------- |
+        #     | M10: gg -r files                                    -->OK |
+        #     | M11: gg -r files -a files                           -->OK |
+        #     | M12: gg -r files -m "customize-comment"             -->OK |
+        #     | M13: gg -r -m "customize-comment" files             -->OK |
+        #     | M14: gg -r files -a files -m "customize-comment"    -->OK |
+        #     | M15: gg -r files -a -m "customize-comment" files    -->OK |
+        #     | M16: gg -r files -m "customize-comment" -a files    -->OK |
+        #     | -----------------------gg -m----------------------------- |
+        #     | M17: gg -m "customize-comment"(No such case)        -->NG |
+        #     | M18: gg -m "customize-comment" -a files             -->OK |
+        #     | M19: gg -m "customize-comment" -r files             -->OK |
+        #     | M20: gg -m "customize-comment" -a files -r files    -->OK |
+        #     | M21: gg -m "customize-comment" -r files -a files    -->OK |
+        #     -------------------------------------------------------------
 
 
 	echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside Dispatch-extense mode."
