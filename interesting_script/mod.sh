@@ -31,6 +31,7 @@ mod_main() {
         elif [ -d $1 ]; then
 		# Read directory
 		echo "Directory: `pwd`/$1"
+		chmod 755 $1
 		cd $1 && cur_dir=`ls`
 		for val in $cur_dir
 		do
