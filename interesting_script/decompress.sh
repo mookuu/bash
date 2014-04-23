@@ -1,10 +1,13 @@
 #!/bin/bash -x
 
-# ★★★★★★★★★★★★★★★★★★★★ #
-# Referenced: http://www.linuxsir.org/  #
-# by RyanH@osk 2014-3-1                 #
-# Email: otagao@gmail.com               #
-# ★★★★★★★★★★★★★★★★★★★★ #
+# ----------------------------------------
+# | Referenced: http://www.linuxsir.org/ |
+# | by RyanH@osk 2014-3-1                |
+# | Email: otagao@gmail.com              |
+# ----------------------------------------
+
+# TODO: structure optimization
+#       if->elif->elif->else->fi
 
 #
 # Update:
@@ -25,9 +28,9 @@ E_DIRWRONG=85
 
 # .tar package
 if [ ${1##*.} == tar ]; then
-	[ -d ${1%%.tar} ] || mkdir ${1%%.tar}
-	cp $1 $_ && cd $_
-        tar xvf $1 && rm $1
+	[ -d ${1%%.tar} ] || sudo mkdir ${1%%.tar}
+	sudo cp $1 $_ && cd $_
+        tar xvf $1 && sudo rm $1
         #tar cvf $1                  # make package
         UNPACK=$?
         echo This is a tar package.
@@ -37,15 +40,15 @@ fi
 if [ ${1##*.} == bz ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.bz} ] || mkdir ${1%%.tar.bz}
-		cp $1 $_ && cd $_
-                tar jxvf $1 && rm $1     # uncompress package
+		[ -d ${1%%.tar.bz} ] || sudo mkdir ${1%%.tar.bz}
+		sudo cp $1 $_ && cd $_
+                tar jxvf $1 && sudo rm $1     # uncompress package
                 UNPACK=$?
                 echo This is a tar.bz package.
         else
-		[ -d ${1%%.bz} ] || mkdir ${1%%.bz}
-		cp $1 $_ && cd $_
-                bunzip2 $1 && rm $1
+		[ -d ${1%%.bz} ] || sudo mkdir ${1%%.bz}
+		sudo cp $1 $_ && cd $_
+                bunzip2 $1 && sudo rm $1
                 # bzip -d $1      # M2
                 UNPACK=$?
                 echo This is a bz package.
@@ -57,16 +60,16 @@ fi
 if [ ${1##*.} == bz2 ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.bz2} ] || mkdir ${1%%.tar.bz2}
-		cp $1 $_ && cd $_
-                tar jxvf $1 && rm $1     # uncompress package
+		[ -d ${1%%.tar.bz2} ] || sudo mkdir ${1%%.tar.bz2}
+		sudo cp $1 $_ && cd $_
+                tar jxvf $1 && sudo rm $1     # uncompress package
                 # tar jcvf test.tar.bz2 ${1%%.*} # compress package
                 UNPACK=$?       # get last code's result
                 echo This is a tar.bz2 package.
         else
-		[ -d ${1%%.bz2} ] || mkdir ${1%%.bz2}
-		cp $1 $_ && cd $_
-                bunzip2 $1 && rm $1
+		[ -d ${1%%.bz2} ] || sudo mkdir ${1%%.bz2}
+		sudo cp $1 $_ && cd $_
+                bunzip2 $1 && sudo rm $1
                 # bzip -d $1      # M2
                 UNPACK=$?
                 echo This is a bz2 package.
@@ -77,17 +80,21 @@ fi
 if [ ${1##*.} == gz ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.gz} ] || mkdir ${1%%.tar.gz}
-		cp $1 $_ && cd $_
-                tar zxvf $1 && rm $1
+		[ -d ${1%%.tar.gz} ] || sudo mkdir ${1%%.tar.gz}
+		sudo cp $1 ${1%%.tar.gz} && cd $_
+                tar zxvf $1 && sudo rm $1
                 # tar zxvf $1 -C ./test # decompress to specify folder
                 # tar zcvf test.tar.gz ${1%%.*} # compress package
                 UNPACK=$?
                 echo This is a tar.gz package.
         else
-		[ -d ${1%%.gz} ] || mkdir ${1%%.gz}
-		cp $1 $_ && cd $_
-                gunzip $1 && rm $1
+		[ -d ${1%%.gz} ] || sudo mkdir ${1%%.gz}
+		sudo cp $1 ${1%%.gz} && cd $_
+                gunzip -f *.gz && tmp=$_
+		# remove tmporary compressed file
+		if [ -e  $tmp ]; then
+			sudo rm $tmp
+		fi
                 # gzip -d $1
                 # gzip ${1} # compress package
                 UNPACK=$?
@@ -97,9 +104,9 @@ fi
 
 # .tgz package
 if [ ${1##*.} == tgz ]; then
-	[ -d ${1%%.tgz} ] || mkdir ${1%%.tgz}
-	cp $1 $_ && cd $_
-        tar zxvf $1 && rm $1
+	[ -d ${1%%.tgz} ] || sudo mkdir ${1%%.tgz}
+	sudo cp $1 $_ && cd $_
+        tar zxvf $1 && sudo sudo rm $1
         # tar zxvf $1 -C ./test # decompress to specify folder
         # tar zcvf test.tgz ${1%%.*} # compress package
         UNPACK=$?
@@ -108,6 +115,8 @@ fi
 
 # .zip package
 if [ ${1##*.} == zip ]; then
+	# if necessary?
+	[-d ${1%%.zip} ] || sudo mkdir ${1%%.zip}
         unzip $1 -d ${1%%.zip}
         # zip test.zip ${1}
         UNPACK=$?
@@ -121,9 +130,9 @@ if [ ${1##*.} == rar ]; then
                 echo "Directory exists, overwriten?"
                 echo "errno: $E_DIRWRONG" && exit "$E_DIRWRONG"
         else
-                mkdir ${1%%.rar} && cp "$1" "$_" && cd "$_"
+                sudo mkdir ${1%%.rar} && sudo cp "$1" "$_" && cd "$_"
         fi
-        rar x "${1##*\/}" && rm "$_" && cd -
+        rar x "${1##*\/}" && sudo rm "$_" && cd -
         # rar a test.zip ${1}
         UNPACK=$?
         echo This is a rar package.
@@ -169,8 +178,9 @@ fi
 
 # rtn check
 if [ $UNPACK == 0 ]; then
-        echo Succes!
+        echo "Succes!"
 else
-        echo Failed!
-        echo Maybe it is not a package or the package is broken?
+        echo "Failed!"
+	echo "Please check if you have the permissions."
+        echo "Or maybe it is not a package or the package is broken?"
 fi
