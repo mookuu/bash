@@ -51,6 +51,7 @@ case $1 in
 	*)
 		cd  /home/kohata/work/cs/bash # workspace 1: bash
 		;;
+	# Other
 esac
 
 
