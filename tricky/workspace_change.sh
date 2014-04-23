@@ -39,6 +39,15 @@ case $1 in
 	sed)
 		cd /home/kohata/work/cs/bash/awk_sed/sed
 		;;
+	vi|VI|vim|VIM)
+		cd /home/kohata/work/cs/productivity/vi
+		;;
+	nano|nan)
+		cd /home/kohata/work/cs/productivity/nano
+		;;
+	pro)
+		cd /home/kohata/work/cs/productivity
+		;;
 	*)
 		cd  /home/kohata/work/cs/bash # workspace 1: bash
 		;;
