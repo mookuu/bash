@@ -8,11 +8,8 @@
 
 # TODO: structure optimization
 #       if->elif->elif->else->fi
-<<<<<<< HEAD
 #       case in {} {func}
-=======
 # TODO: authority(mkdir -> directory)
->>>>>>> 5a6be9b0e9d087795c586e035266f8c10418fec8
 
 #
 # Update:
