@@ -8,7 +8,11 @@
 
 # TODO: structure optimization
 #       if->elif->elif->else->fi
+<<<<<<< HEAD
 #       case in {} {func}
+=======
+# TODO: authority(mkdir -> directory)
+>>>>>>> 5a6be9b0e9d087795c586e035266f8c10418fec8
 
 #
 # Update:
@@ -146,7 +150,7 @@ if [ ${1##*.} == rar ]; then
         else
                 sudo mkdir ${1%%.rar} && sudo cp "$1" "$_" && cd "$_"
         fi
-        rar x "${1##*\/}" && sudo rm "$_" && cd -
+        sudo rar x "${1##*\/}" && sudo rm "$_" && cd -
         # rar a test.zip ${1}
         UNPACK=$?
         echo This is a rar package.
