@@ -8,6 +8,7 @@
 
 # TODO: structure optimization
 #       if->elif->elif->else->fi
+#       case in {} {func}
 
 #
 # Update:
@@ -28,9 +29,14 @@ E_DIRWRONG=85
 
 # .tar package
 if [ ${1##*.} == tar ]; then
-	[ -d ${1%%.tar} ] || sudo mkdir ${1%%.tar}
-	sudo cp $1 $_ && cd $_
-        tar xvf $1 && sudo rm $1
+        dec_dir=${1%.tar}
+	if [ ! -d "$dec_dir" ]; then
+                sudo mkdir $dec_dir
+                sudo chown -R `logname`:`logname` $dec_dir
+        fi
+
+	cp $1 $dec_dir && cd $_
+        tar xvf $1 && rm $1
         #tar cvf $1                  # make package
         UNPACK=$?
         echo This is a tar package.
@@ -40,15 +46,23 @@ fi
 if [ ${1##*.} == bz ]; then
         TMP=${1%.*}
         if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.bz} ] || sudo mkdir ${1%%.tar.bz}
-		sudo cp $1 $_ && cd $_
-                tar jxvf $1 && sudo rm $1     # uncompress package
+                dec_dir=${1%.tar.bz}
+		if [ -d $dec_dir ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+	        cp $1 $dec_dir && cd $_
+                tar jxvf $1 && rm $1     # uncompress package
                 UNPACK=$?
                 echo This is a tar.bz package.
         else
-		[ -d ${1%%.bz} ] || sudo mkdir ${1%%.bz}
-		sudo cp $1 $_ && cd $_
-                bunzip2 $1 && sudo rm $1
+                dec_dir=${1%.bz}
+		if [ -d $dec_dir ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+		cp $1 $dec_dir && cd $_
+                bunzip2 $1 && rm $1
                 # bzip -d $1      # M2
                 UNPACK=$?
                 echo This is a bz package.
