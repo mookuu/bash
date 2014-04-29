@@ -23,6 +23,8 @@ R_RESULT=1		# Flag: 0->OK 1->NG
 R_SUCCEED=0		# success
 R_FAILED=1		# fail
 E_NETUNREACH=101	# errno
+PH2_SRC_DOWNLOAD_RESULT=$R_FAILED
+PH3_SRC_DOWNLOAD_RESULT=$R_FAILED
 GIT_REMOTE_BRANCH=origin
 LOG_POS=/home/ndvr/public/source/log/trace.log	# trace log
 NEW_SRC_POS=/home/ndvr/public/source/		# newest ph2 and ph3 src position
@@ -44,12 +46,26 @@ code_change()
                 # Use absolutely path instead
                 # NKF.sh already a shell, `` is not necessary
                 # Modified @20140411 by H
-                cd $NEW_SRC_POS`date +%Y-%m-%d`-ph2$val && ./NKF.sh euc-jp
-                [ $? -ne $RET ] && echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
-                # cd `date +%Y-%m-%d`-ph2$val && `./NKF.sh euc-jp` && cd -
-                cd $NEW_SRC_POS`date +%Y-%m-%d`-ph3$val && ./NKF.sh euc-jp
-                # cd `date +%Y-%m-%d`-ph3$val && `./NKF.sh euc-jp`
-                [ $? -ne $RET ] && echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
+		# ph2 src encode change
+		if [ $PH2_SRC_DOWNLOAD_RESULT -eq $R_SUCCEED ]; then
+        	        cd $NEW_SRC_POS`date +%Y-%m-%d`-ph2$val && ./NKF.sh euc-jp
+	                if [ $? -ne $RET ]; then
+				R_RESULT=$R_FAILED
+				echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
+			else
+				R_RESULT=$R_SUCCEED
+			fi
+		fi
+		# ph3 src encode change
+		if [ $PH3_SRC_DOWNLOAD_RESULT -eq $R_SUCCEED ]; then
+        	        cd $NEW_SRC_POS`date +%Y-%m-%d`-ph3$val && ./NKF.sh euc-jp
+	 	        if [ $? -ne $RET ]; then
+				R_RESULT=$R_FAILED
+				echo "Error: error occured when change encode in `date +%Y-%m-%d`$val." >>$LOG_POS
+			else
+				R_RESULT=$R_SUCCEED
+			fi
+		fi
         done
 }
 
@@ -75,7 +91,9 @@ src_get_func()
 	# rtn chk
 	if [ "$?" -eq "$RET" ]; then
 		chmod 755 -R *
-		mv -f * ../`date +%Y-%m-%d`-$1
+		# mv cannot overwritten directory-man mv
+		cp -fR * ../`date +%Y-%m-%d`-$1
+		# mv -f * ../`date +%Y-%m-%d`-$1
 		echo "Download succeed."
 		R_RESULT=$R_SUCCEED
 	else
@@ -86,7 +104,7 @@ src_get_func()
 		while [ $RETRY_CNT -lt $RETRY_MAX ] && [ $R_RESULT != $R_SUCCEED ]
 		do
 			((RETRY_CNT++))
-			echo "Download failed! Will retry in 30 minutes. [errno: $E_NETUNREACH]" >>$LOG_POS
+			echo "$1 source download failed! Will retry in 30 minutes. [errno: $E_NETUNREACH]" >>$LOG_POS
 			sleep $TIMELIMIT && echo "Retry[$RETRY_CNT]" >>$LOG_POS && src_get $1
 			# endless loop???
 		done
@@ -102,6 +120,8 @@ src_get_main()
 	if [ $R_RESULT -ne $R_SUCCEED ]; then
 	        echo "*****Error: cann't download ph2 source, please check the network!*****" >>$LOG_POS
 	#       exit $NET_UNREACH
+	else
+		PH2_SRC_DOWNLOAD_RESULT=$R_SUCCEED
 	fi
 	RETRY_CNT=0
 	# Ph3
@@ -109,6 +129,8 @@ src_get_main()
 	if [ $R_RESULT -ne $R_SUCCEED ]; then
 	        echo "*****Error: cann't download ph3 source, please check the network!*****" >>$LOG_POS
 	        exit $NET_UNREACH
+	else
+		PH3_SRC_DOWNLOAD_RESULT=$R_SUCCEED
 	fi
 	# TODO: other branch
 
@@ -141,7 +163,7 @@ main()
 	# create directory for storing source
 	pre_process
 
-	# get src from github
+	# get source from github
 	src_get_main
 
 	# encode change
@@ -150,8 +172,14 @@ main()
 
 # Entry
 main
-if [ "$?" -ne "$R_SUCCEED" ]; then
+if [ "$R_RESULT" -ne "$R_SUCCEED" ]; then
 	echo "*****Error: Unknown error happened, please check the log file for more information!*****" >>$LOG_POS
+elif [ $PH2_SRC_DOWNLOAD_RESULT -eq $R_SUCCEED ] && [ $PH3_SRC_DOWNLOAD_RESULT -ne $R_SUCCEED ]; then
+	echo "Ph2 source download succeed, but ph3 source download failed."
+	echo "Please check the log file for more infomation."
+elif [ $PH2_SRC_DOWNLOAD_RESULT -ne $R_SUCCEED ] && [ $PH3_SRC_DOWNLOAD_RESULT -eq $R_SUCCEED ]; then
+	echo "Ph3 source download succeed, but ph2 source download failed."
+	echo "Please check the log file for more infomation."
 else
         echo "Source download successful."
         echo "Source download successful." >>$LOG_POS
