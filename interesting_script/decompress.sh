@@ -9,7 +9,7 @@
 #
 # Update:
 #	decompress directory added @2014-04-15 by H
-#       structure optimize @2014-04-28 by H
+#       structure optimize @2014-04-29 by H
 
 # Following packages are supported.
 # .bz (.bz|.tar.bz)
