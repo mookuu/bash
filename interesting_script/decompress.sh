@@ -1,25 +1,31 @@
 #!/bin/bash -x
 
 # ----------------------------------------
-# | Referenced: http://www.linuxsir.org/ |
+# | Reference: http://www.linuxsir.org/  |
 # | by RyanH@osk 2014-3-1                |
 # | Email: otagao@gmail.com              |
 # ----------------------------------------
 
-# TODO: structure optimization
-#       if->elif->elif->else->fi
-#       case in {} {func}
-# TODO: authority(mkdir -> directory)
-
 #
 # Update:
-#	decompress directory added by @2014-04-15 by H
+#	decompress directory added @2014-04-15 by H
+#       structure optimize @2014-04-28 by H
 
 # Following packages are supported.
-# .tar | .bz | .tar.bz | .bz2 | .tar.bz2 | .gz | .tar.gz
-# .tgz | .zip | .rar | .Z | .tar.Z | .lha | .xz
+# .bz (.bz|.tar.bz)
+# .bz2(.bz2|.tar.bz2)  -> .tar.bz2 OK
+# .gz (.gz|.tar.gz)    -> test OK
+# .tar
+# .tgz
+# .rar
+# .zip
+# .Z   | .tar.Z
+# .lha
+# .xz
 
 # TODO: `pwd` add
+# TODO: -C specify directory
+# TODO: something package delete original package after decompress
 # decompress /home/Downloads/test.gzip
 
 UNPACK=1                        # rtn: [OK:0] [NG:1]
@@ -28,174 +34,302 @@ E_DIRWRONG=85
 # compressed file's directory
 # CUR_DIR=`pwd`
 
-# .tar package
-if [ ${1##*.} == tar ]; then
-        dec_dir=${1%.tar}
-	if [ ! -d "$dec_dir" ]; then
-                sudo mkdir $dec_dir
-                sudo chown -R `logname`:`logname` $dec_dir
+# directory create
+dir_create()
+{
+        # directory not exists
+        if [ ! -d $1 ]; then
+                if [ -w . ]; then
+         	       # owner of new directory is current user
+         	       mkdir $1
+                else
+         	       sudo mkdir $1
+         	       sudo chown -R `logname`:`logname` $1
+                fi
+        else
+                # if permission denied
+                if [ ! -w $1 ]; then
+                        sudo chmod o+w $1
+                fi
         fi
-
-	cp $1 $dec_dir && cd $_
-        tar xvf $1 && rm $1
-        #tar cvf $1                  # make package
-        UNPACK=$?
-        echo This is a tar package.
-fi
+}
 
 # .bz || .tar.bz package
-if [ ${1##*.} == bz ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-                dec_dir=${1%.tar.bz}
-		if [ -d $dec_dir ]; then
-                        sudo mkdir $dec_dir
-                        sudo chown -R `logname`:`logname` $dec_dir
+bz_func()
+{
+        if [ ${1##*.} == bz ]; then
+                TMP=${1%.*}
+                if [ ${TMP##*.} == tar ]; then
+                        dec_dir=${1%.tar.bz}
+                	if [ ! -d $dec_dir ]; then
+                                sudo mkdir $dec_dir
+                                sudo chown -R `logname`:`logname` $dec_dir
+                        fi
+                        cp $1 $dec_dir && cd $_
+                        tar jxvf $1     # uncompress package
+                        UNPACK=$? && rm $1
+                        echo This is a tar.bz package.
+                else
+                        dec_dir=${1%.bz}
+                	if [ ! -d $dec_dir ]; then
+                                sudo mkdir $dec_dir
+                                sudo chown -R `logname`:`logname` $dec_dir
+                        fi
+                	cp $1 $dec_dir && cd $_
+                        bunzip2 $1
+                        # bzip -d $1      # M2
+                        UNPACK=$? && rm $1
+                        echo This is a bz package.
                 fi
-	        cp $1 $dec_dir && cd $_
-                tar jxvf $1 && rm $1     # uncompress package
-                UNPACK=$?
-                echo This is a tar.bz package.
-        else
-                dec_dir=${1%.bz}
-		if [ -d $dec_dir ]; then
-                        sudo mkdir $dec_dir
-                        sudo chown -R `logname`:`logname` $dec_dir
-                fi
-		cp $1 $dec_dir && cd $_
-                bunzip2 $1 && rm $1
-                # bzip -d $1      # M2
-                UNPACK=$?
-                echo This is a bz package.
         fi
-fi
-
+}
 
 # .bz2 || .tar.bz2 package
-if [ ${1##*.} == bz2 ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.bz2} ] || sudo mkdir ${1%%.tar.bz2}
-		sudo cp $1 $_ && cd $_
-                tar jxvf $1 && sudo rm $1     # uncompress package
-                # tar jcvf test.tar.bz2 ${1%%.*} # compress package
-                UNPACK=$?       # get last code's result
-                echo This is a tar.bz2 package.
-        else
-		[ -d ${1%%.bz2} ] || sudo mkdir ${1%%.bz2}
-		sudo cp $1 $_ && cd $_
-                bunzip2 $1 && sudo rm $1
-                # bzip -d $1      # M2
-                UNPACK=$?
-                echo This is a bz2 package.
+bz2_func()
+{
+        if [ ${1##*.} == bz2 ]; then
+                TMP=${1%.*}
+                if [ ${TMP##*.} == tar ]; then
+                        dec_dir=${1%.tar.bz2}
+                        # in case of permission denied
+                        dir_create $dec_dir
+                        cp $1 $dec_dir && cd $_
+                	tar jxvf $1     # uncompress package
+                        # tar jcvf test.tar.bz2 ${1%%.*} # compress package
+                        UNPACK=$? && rm $1           # get last code's result
+                        if [ -d $dec_dir ]; then
+                                mv $dec_dir/* . && rm -fr $dec_dir
+                        fi
+                        echo This is a tar.bz2 package.
+                else
+                        dec_dir=${1%.bz2}
+                        dir_create $dec_dir
+                	cp $1 $dec_dir && cd $_
+                        bunzip2 $1
+                        # bzip -d $1      # M2
+                        UNPACK=$? && rm $1
+                        echo This is a bz2 package.
+                fi
         fi
-fi
+}
 
 # .gz || .tar.gz package
-if [ ${1##*.} == gz ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.gz} ] || sudo mkdir ${1%%.tar.gz}
-		sudo cp $1 ${1%%.tar.gz} && cd $_
-                tar zxvf $1 && sudo rm $1
-                # tar zxvf $1 -C ./test # decompress to specify folder
-                # tar zcvf test.tar.gz ${1%%.*} # compress package
-                UNPACK=$?
-                echo This is a tar.gz package.
-        else
-		[ -d ${1%%.gz} ] || sudo mkdir ${1%%.gz}
-		sudo cp $1 ${1%%.gz} && cd $_
-                gunzip -f *.gz && tmp=$_
-		# remove tmporary compressed file
-		if [ -e  $tmp ]; then
-			sudo rm $tmp
-		fi
-                # gzip -d $1
-                # gzip ${1} # compress package
-                UNPACK=$?
-                echo This is a gz package.
+gz_func()
+{
+        if [ ${1##*.} == gz ]; then
+                TMP=${1%.*}
+                if [ ${TMP##*.} == tar ]; then
+                        dec_dir=${1%.tar.gz}
+                        # in case of permission denied
+                        dir_create $dec_dir
+                	cp $1 $dec_dir && cd $_
+                        tar zxvf $1
+                        # tar zxvf $1 -C ./test # decompress to specify folder
+                        # tar zcvf test.tar.gz ${1%%.*} # compress package
+                        UNPACK=$? && rm $1
+                        if [ -d $dec_dir ]; then
+                                mv $dec_dir/* . && rm -fr $dec_dir
+                        fi
+                        echo This is a tar.gz package.
+                else
+                        dec_dir=${1%.gz}
+                        dir_create $dec_dir
+                	cp $1 $dec_dir && cd $_
+                        gunzip -f $1
+                        UNPACK=$?    # delete original package by default
+                        # gzip -d $1
+                        # gzip ${1} # compress package
+                        echo This is a gz package.
+                fi
         fi
-fi
+}
+
+# .tar package
+tar_func()
+{
+        if [ ${1##*.} == tar ]; then
+                dec_dir=${1%.tar}
+                if [ ! -d "$dec_dir" ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+
+                cp $1 $dec_dir && cd $_
+                tar xvf $1
+                #tar cvf $1                  # make package
+                UNPACK=$? && rm $1
+                echo This is a tar package.
+        fi
+}
 
 # .tgz package
-if [ ${1##*.} == tgz ]; then
-	[ -d ${1%%.tgz} ] || sudo mkdir ${1%%.tgz}
-	sudo cp $1 $_ && cd $_
-        tar zxvf $1 && sudo sudo rm $1
-        # tar zxvf $1 -C ./test # decompress to specify folder
-        # tar zcvf test.tgz ${1%%.*} # compress package
-        UNPACK=$?
-        echo This is a tgz package.
-fi
-
-# .zip package
-if [ ${1##*.} == zip ]; then
-	# if necessary?
-	[-d ${1%%.zip} ] || sudo mkdir ${1%%.zip}
-        unzip $1 -d ${1%%.zip}
-        # zip test.zip ${1}
-        UNPACK=$?
-        echo This is a zip package.
-fi
+tgz_func()
+{
+        if [ ${1##*.} == tgz ]; then
+                dec_dir=${1%.tgz}
+                if [ ! -d ${1%%.tgz} ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+                cp $1 $dec_dir && cd $_
+                tar zxvf $1
+                # tar zxvf $1 -C ./test # decompress to specify folder
+                # tar zcvf test.tgz ${1%%.*} # compress package
+                UNPACK=$? && rm $1
+                echo This is a tgz package.
+        fi
+}
 
 # .rar package
-if [ ${1##*.} == rar ]; then
-        # Filename
-        if [ -d "${1%%.rar}" ]; then
-                echo "Directory exists, overwriten?"
-                echo "errno: $E_DIRWRONG" && exit "$E_DIRWRONG"
-        else
-                sudo mkdir ${1%%.rar} && sudo cp "$1" "$_" && cd "$_"
+rar_func()
+{
+        if [ ${1##*.} == rar ]; then
+                dec_dir=${1%.rar}
+                # Filename
+                if [ ! -d $dec_dir ]; then
+                        echo "Directory exists, overwriten?"
+                        # TODO: read line
+                        # echo "errno: $E_DIRWRONG" && exit "$E_DIRWRONG"
+                else
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+                cp $1 $dec_dir && cd $_
+                # sudo rar x "${1##*\/}" && sudo rm "$_" && cd -
+                rar x $dec_dir
+                # rar a test.zip ${1}
+                UNPACK=$? && rm $1
+                echo This is a rar package.
         fi
-        sudo rar x "${1##*\/}" && sudo rm "$_" && cd -
-        # rar a test.zip ${1}
-        UNPACK=$?
-        echo This is a rar package.
-fi
+}
+
+# .zip package
+zip_func()
+{
+        if [ ${1##*.} == zip ]; then
+                dec_dir=${1%.zip}
+                # if necessary?
+                if [ ! -d $dec_dir ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+                unzip $1 -d $dec_dir
+                # zip test.zip ${1}
+                UNPACK=$?
+                echo This is a zip package.
+        fi
+}
 
 # .Z | .tar.Z  package
-if [ ${1##*.} == Z ]; then
-        TMP=${1%.*}
-        if [ ${TMP##*.} == tar ]; then
-		[ -d ${1%%.tar.Z} ] || mkdir ${1%%.tar.Z}
-		cp $1 $_ && cd $_
-                tar Zxvf $1 && rm $1
-                # tar Zcvf FileName.tar.Z DirName # compress
-                UNPACK=$?
-                echo This is a tar.Z package.
-        else
-		[ -d ${1%%.Z} ] || mkdir ${1%%.Z}
-		cp $1 $_ && cd _
-                uncompress $1 && rm $1
-                # compress directory_name # compress
-                UNPACK=$?
-                echo This is a .Z package.
+zZ_func()
+{
+        if [ ${1##*.} == Z ]; then
+                TMP=${1%.*}
+                if [ ${TMP##*.} == tar ]; then
+                        dec_dir=${1%.tar.z}
+                	if [ ! -d $dec_dir ]; then
+                                sudo mkdir $dec_dir
+                                sudo chown -R `logname`:`logname` $dec_dir
+                        fi
+                	cp $1 $dec_dir && cd $_
+                        tar Zxvf $1
+                        # tar Zcvf FileName.tar.Z DirName # compress
+                        UNPACK=$? && rm $1
+                        echo This is a tar.Z package.
+                else
+                        dec_dir=${1%.Z}
+                	if [ ! -d $dec_dir ]; then
+                                sudo mkdir $dec_dir
+                                sudo chown -R `logname`:`logname` $dec_dir
+                        fi
+                	cp $1 $dec_dir && cd _
+                        uncompress $1
+                        # compress directory_name # compress
+                        UNPACK=$? && rm $1
+                        echo This is a .Z package.
+                fi
         fi
-fi
+}
 
 # .lha package
-if [ ${1##*.} == lha ]; then
-	[ -d ${1%%.lha} ] || mkdir ${1%%.lha}
-	cp $1 $_ && cd $_
-        lha -e $1 && rm $1
-        # lha -a FileName.lha FileName # compress
-        UNPACK=$?
-        echo This is a lha package.
-fi
+lha_func()
+{
+        if [ ${1##*.} == lha ]; then
+                dec_dir=${1%.lha}
+                if [ ! -d $dec_dir ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+                cp $1 $dec_dir && cd $_
+                lha -e $1
+                # lha -a FileName.lha FileName # compress
+                UNPACK=$? && rm $1
+                echo This is a lha package.
+        fi
+}
 
 # .xz package
-if [ ${1##*.} == xz ]; then
-        xz -d $1
-        tar -xvf ${1%.*}
-        UNPACK=$?
-        echo This is a xz package.
-fi
+xz_func()
+{
+        if [ ${1##*.} == xz ]; then
+                # generally .tar.xz package
+                dec_dir=${1%.tar.xz}
+                if [ ! -d $dec_dir ]; then
+                        sudo mkdir $dec_dir
+                        sudo chown -R `logname`:`logname` $dec_dir
+                fi
+                xz -d $1
+                cp ${1%.xz} $dec_dir && cd $_
+                tar -xvf ${1%.xz}
+                UNPACK=$?
+                echo This is a xz package.
+        fi
+}
 
+# Function entry
+main()
+{
+        case ${1##*.} in
+                bz)
+                        bz_func $1
+                        ;;
+                bz2)
+                        bz2_func $1
+                        ;;
+                gz)
+                        gz_func $1
+                        ;;
+                tar)
+                        tar_func $1
+                        ;;
+                tgz)
+                        tgz_func $1
+                        ;;
+                rar)
+                        rar_func $1
+                        ;;
+                zip)
+                        zip_func $1
+                        ;;
+                z|Z)
+                        zZ_func $1
+                        ;;
+                lha)
+                        lha_func $1
+                        ;;
+                xz)
+                        xz_func $1
+                        ;;
+        esac
+}
+
+main $1
 # rtn check
 if [ $UNPACK == 0 ]; then
         echo "Succes!"
 else
         echo "Failed!"
-	echo "Please check if you have the permissions."
-        echo "Or maybe it is not a package or the package is broken?"
+	echo "Please check the following possibility:"
+        echo "   Package broken."
+        echo "   Permissions denied."
 fi
