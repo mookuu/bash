@@ -16,3 +16,8 @@ AWK manual
 -F value
 	sets field seperator to value, default space or tab
 
+
+Builtin-variables
+
+	OFS       inserted between fields on output, initially = " ".
+
