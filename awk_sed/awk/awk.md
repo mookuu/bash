@@ -13,5 +13,6 @@ AWK manual
 -f script_file
 	Execute script file(with edit command in)
 
-
+-F value
+	sets field seperator to value, default space or tab
 
