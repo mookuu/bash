@@ -48,6 +48,9 @@ case $1 in
 	pro)
 		cd /home/kohata/work/cs/productivity
 		;;
+	page|blo|blog)
+		cd /home/kohata/work/cs/github_pages
+		;;
 	*)
 		cd  /home/kohata/work/cs/bash # workspace 1: bash
 		;;

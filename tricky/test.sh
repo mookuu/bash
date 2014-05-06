@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 total 292
 drwxr-xr-x 17 ryan ryan 4096 May  1 16:24 ./
 drwxr-xr-x 11 ryan ryan 4096 Apr 10 21:17 ../
@@ -78,3 +79,9 @@ drwxr-xr-x  2 ryan ryan 4096 Apr 22 23:15 ttdir/
 -rwxr-xr-x  1 ryan ryan  144 Mar 16 01:25 version_of_os.sh*
 drwxr-xr-x  2 ryan ryan 4096 Apr 22 23:15 words/
 -rwxr-xr-x  1 ryan ryan 1092 Apr 23 23:42 workspace_change.sh*
+=======
+#!/bin/bash
+
+read -r var
+echo $var
+>>>>>>> 8f93f28325c69323c72130935883c711d1a8b637

@@ -206,7 +206,7 @@ mode_add()
 mode_dispatch_ex()
 {
         #  files=file|directory
-        #  Case:
+        #  Following cases are supported:
         #     -------------------------gg -a-------------------------------
         #     | M1:  gg files                                       -->OK |
         #     | M2:  gg -a files                                    -->OK |
@@ -216,7 +216,7 @@ mode_dispatch_ex()
         #     | M6:  gg -a files -r files -m "customize-comment"    -->OK |
         #     | M7:  gg -a files -r -m "customize-comment" files    -->OK |
         #     | M8:  gg -a files -m "customize-comment" -r files    -->OK |
-        #     | M9:  TODO: gg -am? or gg -a -m(ケースなし)          -->NG |
+        #     | M9:  TODO: gg -am? or gg -a -m(ケースなし)            -->NG |
         #     | -----------------------gg -r----------------------------- |
         #     | M10: gg -r files                                    -->OK |
         #     | M11: gg -r files -a files                           -->OK |
@@ -237,7 +237,6 @@ mode_dispatch_ex()
 	echo "`date +%Y/%m/%d-%T`:(L$LINENO): `basename $0` [Debug] inside Dispatch-extense mode."
         if [ "$1" != "-a" ] && [ "$1" != "-m" ] && [ "$1" != "-r" ]; then
 	        # default mode(without option)--can't gurantee default mode!!!
-
                 # M5:  gg -a -m "customize-comment" files
                 if [ $GIT_ADD_COMMENT_FLAG -eq $D_COM_TRUE ] || \
                     [ $GIT_RM_ADD_COMMENT_FLAG -eq $D_COM_TRUE ]; then
