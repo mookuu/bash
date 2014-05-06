@@ -4,8 +4,8 @@
 format:
     fd<file                 # fd: file descriptor
 description:
-    redirect fd to file（open as read）.If fd is ignored, it is "Redirecting Standard Input".
-sample:
+    redirect fd to file（open as read）.If fd is ignored, it is
+	"RedirectingStandard Input". sample:
     cat < file
     cat 0< file
 
@@ -18,7 +18,8 @@ Option:
         Open:  set -o noclobber # file cannot be overwriten unless force redirection[1]
         Close: set +o noclobber # file can be overwriten:default
 description:
-    redirect fd to file（open as write）. If fd is ignored, it is "Redirecting Standard Output"
+    redirect fd to file（open as write）. If fd is ignored, it is
+	"Redirecting Standard Output"
 
 sample:
     set -o noclobber
@@ -40,16 +41,17 @@ description:
 
 # M4:标准输出与标准错误输出重定向（Redirecting Standard Output and Standard Error）
 format:
-    &>file                      # alse '>&file'
+    &>file                      # also '>&file'
     >file2&1                    # same as upper two
 description:
     redirect standard output to file（open as write）
 
 explantion:
     >file2&1
-    1: redirect standard output to file, now standard output point to file(output to file)
-    2: copy standard error to standard output(now point to file, so copy error to file)
-sample:
+    1: redirect standard output to file, now standard output point to
+	file(output to file)
+    2: copy standard error to standard output(now point to file, so copy
+	error to file) sample:
     date &> file
     cat file                    # show file contents
     date &> file                # overwrite
@@ -59,7 +61,8 @@ sample:
     mkdir &>> file              # missing parameter, error happed
     cat file                    # show file contents
 
-# M5:附加标准输出与标准错误输出重定向（Appending Standard Output and Standard Error）
+# M5:附加标准输出与标准错误输出重定向（Appending Standard Output and
+# 	StandardError）
 format:
     &>>file
     >>file2&1
@@ -82,7 +85,7 @@ description:
 
 # M8:读写打开文件描述符（Opening File Descriptors for Reading and Writing）
 format:
-    fd<>file
+    exec fd<>file
 description:
     read fd(contents) to file(as read and write). If fd is ignored, standard
     input is set.

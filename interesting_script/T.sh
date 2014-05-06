@@ -18,7 +18,7 @@ if [ -z $1 ]; then
         if [ -p /dev/stdin ]; then # ipnut from a pipe
                 read -r p
         else
-                echo "No timestam given." >&2
+                echo "No timestamp given." >&2
                 exit
         fi
 else

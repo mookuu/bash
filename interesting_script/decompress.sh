@@ -118,7 +118,7 @@ fi
 if [ ${1##*.} == zip ]; then
 	# if necessary?
 	[-d ${1%%.zip} ] || sudo mkdir ${1%%.zip}
-        unzip $1 -d ${1%%.zip}
+        sudo unzip $1 -d ${1%%.zip}
         # zip test.zip ${1}
         UNPACK=$?
         echo This is a zip package.
