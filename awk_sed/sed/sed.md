@@ -1,7 +1,7 @@
 userguide of sed
 ================
 
-## Command
+## Commands
 
 * a: add
 
@@ -21,11 +21,11 @@ userguide of sed
 
 ### Delete
 
-1. Delete single line
++. Delete single line
 
-	* sed -e '1d' example
+	`sed -e '1d' example`
 
-	* sed -e '$d' example
+	`sed -e '$d' example`
 
 2. Delete multi lines
 
