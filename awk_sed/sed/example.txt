@@ -1,8 +1,8 @@
-hhkb is short for  happy hacking keyboard
-it's of honor in programmers of UNIX
-insert-2 path:/usr/bin insert
-insert path:/usr/bin insert
-insert-2 path:/usr/local/bin
-hhkb is developed by a Japanese called
-I want to own such one for long.
-but it's price is a bit high$.
+line1: apple!
+line2: boy@
+line3: cat#
+line4: dog$
+line5: elf%
+line6: fox^
+line3: cat again
+other
