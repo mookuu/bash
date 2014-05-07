@@ -1,5 +1,0 @@
-line1 module
-line2 check
-line3 funn
-line4 interesting_script
-line5 else

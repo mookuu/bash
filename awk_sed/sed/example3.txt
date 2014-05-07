@@ -1,3 +1,0 @@
-insert-2 path:/usr/bin insert
-insert path:/usr/bin insert
-insert-2 path:/usr/local/bin

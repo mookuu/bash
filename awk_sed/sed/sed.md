@@ -181,6 +181,35 @@ userguide of sed
 
     `sed -e '/boy/,/fox/p' example.txt`
 
+#### Character replace(字元替换)
+
+    `sed -e 'y/boy/BOY/' example.txt`(replace 'b' with 'B', 'o' wiht 'O' and 'y' with 'Y')
+
+    `sed '1,3y/line/LINE/' example2.txt`
+
+#### Negation(!)
+
+    `sed -e '/elf/!d' example.txt`(delete all lines except lines with 'elf' )
+
+#### Next command(n)
+
+    `sed '/white/{n;s/line/dot/g;}' example.txt`(find line with
+    'check' and move to next line to execute next command)
+
+    `sed -n -e '/white/n' -e 'p' example.txt`( 表示输出文件，但如果一
+    行含有字符串echo，则输出包含该字符串的下一行。)
+
+    `sed -n -e 'n' -e 'p' filename`(输出文中的偶数行)
+
+#### Multi commands
+
++ use ;
+
+    `sed 's/line/& dot/g; 1/i\white example.txt`(without -e parameter)
+
++ use -e
+
+  `sed -e 'cmd1' -e 'cmd2' filename`
 #### Pattern match
 
 * sed -n '/hhkb/p' example
@@ -256,18 +285,8 @@ userguide of sed
 	write matched patterns to example3.txt
 
 
-Command(n)-next line
-* 
-* sed '/check/{n;s/funn/funn-addition/;}' example2.txt
 
-	find line with 'check' and move to next line to execute next command
-
-Command(y)-alphabet case change
-
-* sed '1,3y/line/LINE/' example2.txt
   
-	replace 'line' in line 1 to line3 to 'LINE'
-
 Command(q)-quit
 
 * sed '3q' example2.txt
