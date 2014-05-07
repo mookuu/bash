@@ -193,11 +193,9 @@ userguide of sed
 
 #### Next command(n)
 
-    `sed '/white/{n;s/line/dot/g;}' example.txt`(find line with
-    'check' and move to next line to execute next command)
+    `sed '/white/{n;s/line/dot/g;}' example.txt`(find line with 'check' and move to next line to execute next command)
 
-    `sed -n -e '/white/n' -e 'p' example.txt`( 表示输出文件，但如果一
-    行含有字符串echo，则输出包含该字符串的下一行。)
+    `sed -n -e '/white/n' -e 'p' example.txt`( 表示输出文件，但如果一 行含有字符串echo，则输出包含该字符串的下一行。)
 
     `sed -n -e 'n' -e 'p' filename`(输出文中的偶数行)
 
@@ -242,8 +240,6 @@ userguide of sed
 
 * sed '/funn$/a\\---->addition using pattern match' example2.txt
 
-
-
 ### line range(, comma)
 
 * sed -n '2,/^insert/p' example.txt
@@ -254,8 +250,8 @@ userguide of sed
 
 	print line from line starts with 'line1' to line end with 'funn'
 
-	if doesn't contain line1, output nothing; if contains line1 but not 
-	
+	if doesn't contain line1, output nothing; if contains line1 but not
+
 	funn, output the whole line from the line contains line1
 
 * sed -n '/line1/,/funn/s/$/ line-end/p' example2.txt
@@ -284,9 +280,6 @@ userguide of sed
 
 	write matched patterns to example3.txt
 
-
-
-  
 Command(q)-quit
 
 * sed '3q' example2.txt
@@ -298,7 +291,7 @@ Command(h G)
 * sed -e '/check/h' -e '$G' example2.txt
 
 	comannd1: find line with 'check' and save to buffer
-	
+
 	command2: get from buffer and save to file
 
 * sed -e '/check/h' -e '/funn/x' example2.txt
