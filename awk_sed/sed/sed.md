@@ -33,15 +33,15 @@ userguide of sed
 
 	`sed -e '2,$d' example`
 
-3. Deltet line using pattern match
++ Deltet line using pattern match
 
 	1. with character
 
-		* sed -e '/#/d' example.txt
+		`sed -e '/#/d' example.txt`
 
 	2. with word
 
-		* sed -e '/boy/'d example.txt
+		`sed -e '/boy/'d example.txt`
 
 	3. with line
 
