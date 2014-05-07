@@ -29,7 +29,7 @@ userguide of sed
 
 + Delete multi lines
 
-    sed -e '1,3d' example
+	sed -e '1,3d' example
 
     sed -e '2,$d' example
 
