@@ -53,7 +53,7 @@ userguide of sed
 
 	5. use range(delete multi lines)
 
-		`sed -e '/line1/,/line3/d' example.txt`(first occurence of line3)
+		`sed -e '/line1/,/line3/d' example.txt`(first occurence of 'line3')
 
 		`sed -e '2,/line4/d' example.txt`
 
@@ -61,18 +61,18 @@ userguide of sed
 
 	6. use .* character
 
-		`sed -e '/l.*l/d' example.txt`(lines that contains two l)
-### print
+		`sed -e '/l.*l/d' example.txt`(lines that contains two 'l')
+#### print
 
-* sed -n '1p' example
+- sed -n '1p' example
 
-* sed -n '$p' example
+- sed -n '$p' example
 
-* sed -n '2,4p' example
+- sed -n '2,4p' example
 
-* sed -n '2, $p' example
+- sed -n '2, $p' example
 
-### pattern match
+#### pattern match
 
 * sed -n '/hhkb/p' example
 
