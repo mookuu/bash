@@ -35,33 +35,33 @@ userguide of sed
 
 + Deltet line using pattern match
 
-	- with character
+	1. with character
 
 		`sed -e '/#/d' example.txt`
 
-	- with word
+	2. with word
 
 		`sed -e '/boy/'d example.txt`
 
 	3. with line
 
-		* sed -e '/line2: boy@/d' example.txt
+		`sed -e '/line2: boy@/d' example.txt`
 
 	4. with word-2(delete line that not contains word)
 
-		* sed -e '/boy/!d' example.txt
+		`sed -e '/boy/!d' example.txt`
 
 	5. use range(delete multi lines)
 
-		* sed -e '/line1/,/line3/d' example.txt(first occurence of line3)
+		`sed -e '/line1/,/line3/d' example.txt`(first occurence of line3)
 
-		* sed -e '2,/line4/d' example.txt
+		`sed -e '2,/line4/d' example.txt`
 
-		* sed -e '/line2/, 4d' example.txt
+		`sed -e '/line2/, 4d' example.txt`
 
 	6. use .* character
 
-		* sed -e '/l.*l/d' example.txt(lines that contains two l)
+		`sed -e '/l.*l/d' example.txt`(lines that contains two l)
 ### print
 
 * sed -n '1p' example
