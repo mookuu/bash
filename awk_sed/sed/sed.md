@@ -19,6 +19,10 @@ userguide of sed
 
 * n: next line and execute new command
 
+### Original Character Sets(元字符集)
+
+* \(patterns\): save the patterns in order, use \n to call the patterns
+
 #### Delete
 
 + Delete single line
@@ -63,7 +67,99 @@ userguide of sed
 
 		`sed -e '/l.*l/d' example.txt`(lines that contains two 'l')
 
-#### print
+#### Replace(s: string, c:line/buffer)
+
++ Replace single line(c)
+
+    `sed -e '1c\apple' example.txt`
+
+    `sed -e '1c apple' example.txt`
+
+    `sed -e '$c\apple' example.txt`
+
++ Replace multi lines(c)
+
+    `sed -e '1,3c\apple' example.txt`
+
+    `sed -e '1,3c apple' example.txt`
+
+    `sed -e '3,$c newline1\nnewline2' example.txt`(replace lines with multilines)
+
++ Replace single word(&)
+
+    `sed -e 's/boy/girl/' example.txt`
+
+    `sed -e 's/boy/&\&girl/' example.txt`(&:specify pattern 'boy')
+
+    `sed -e 's/boy/&&girl/' example.txt`(boyboygirl)
+
+    `sed -e 's#line#dot#g' example.txt`(very charcter that follows 's' is reagrded as seperator
+
++ Change disp order(\n)
+
+    `sed -e 's/\(one\) \(two\) \(three\)/[\3 \2 \1]/' example.txt`(original character)
+
++ Replace multi words(g)-the whole line words
+
+    `sed -e 's/line/dot/g' example.txt`(replace all the words 'line' to 'dot' in the space)
+
+    `sed -e 's/line/dot/' example.txt`(if 'line' occurs twice in one line, replace the first one)
+
++ Replace single word(m)-specify word
+
+    `sed -e 's/line/dot/m2' example.txt`
+
+    `sed -e 's/line/dot/2' example.txt`
+
++ Replace single word(p) and print
+
+    `sed -e 's/line/dot/p' example.txt`(replace the first occurence of 'line' and output to the stdout)
+
++ Replace single word(w) and write to file
+
+    `sed -e 's/line/dot/w tmp.txt' example.txt`(output the matched lines to tmp.txt)
+
++ Replace word(s) using position parameter
+
+    `sed -e '/white/s/cat/cats/g' example.txt`(g:all the line)
+
+    `sed -e '/white/s/cat/cats/' example.txt`(only the first occurence)
+
+    `sed -e '1,5 s/line/dot/g' example.txt`
+
+    `sed -e '1,/again/s/line/dot/g' example.txt`
+
+#### insert(i)
+
++ Insert before line
+
+    `sed -e '/boy/i\line?: girl?' example.txt`
+
+    `sed -e '1i\---------------' example.txt`
+
+    `sed -e '$i\---------------' example.txt'`
+
++ Insert after line
+
+    `sed -e '/boy/a\line?: girl?' example.txt`
+
+    `sed -e '1a\---------------' example.txt`
+
+    `sed -e '$a\---------------' example.txt`
+
++ Insertion that will write to the original file
+
+    `sed -i '4i\insertion before line4' example.txt`
+
+    `sed -i '2a\insertion after line2' example.txt`
+
++ Insertion with s
+
+    `sed -i 's/line/dot/' example.txt >> tmp.txt`
+
+    `sed -i 's/line/dot/g' example.txt >> tmp.txt`
+
+#### Print
 
 + Print single line
 
@@ -71,13 +167,21 @@ userguide of sed
 
 	`sed -n '$p' example`
 
-+ Print multi lines
+    `sed -n 's/^boy/fox/p' example.txt`(start with 'one')
+
+    `sed -n 's/fox$/p' example.txt`(end with 'three')
+
++ Print multi lines(range)
 
 	`sed -n '2,4p' example`
 
 	`sed -n '2, $p' example`
 
-#### pattern match
+    `sed -n '/boy/,/fox/p' example.txt`
+
+    `sed -e '/boy/,/fox/p' example.txt`
+
+#### Pattern match
 
 * sed -n '/hhkb/p' example
 
@@ -109,73 +213,7 @@ userguide of sed
 
 * sed '/funn$/a\\---->addition using pattern match' example2.txt
 
-### replace(c)-line oriented
 
-sed '1c replace1' example3
-
-	replace line 1 with replace1
-
-sed '$c replace1' example3
-
-	replace last line with replace1
-
-sed '1,2c replace2' example3
-
-	replace line 1 and line 2 with replace2
-
-sed '2,$c replace3' example3
-
-	replace from line 2 to last line with replace3
-
-### replace(s)-words oriented
-
-* sed 's/insert/insert-2/' example.txt
-
-	replace the first occurence of insert in a line with insert-2
-
-* sed 's/insert/insert-2/g' example.txt
-
-	replace all the occurences of insert with insert-2
-
-* sed -n 's/^insert/insert-2/p' example.txt
-
-	print only the line that start with insert after being replaced by insert-2
-
-* sed 's/insert/-&-/' example.txt
-
-	replace insert with -insert-
-
-* sed -n 's/\(insert\)-2/\1ion/p' example.txt
-
-	replace insert-2 with insertion(mark insert as 1)
-
-$ sed 's#insert#insertion#g' example.txt
-
-	不论什么字符，紧跟着s命令的都被认为是新的分隔符，所以，“#”在这里是分隔符，代替了默认的“/”分隔符。表示把所有10替换成100。
-
-* sed -i 's/hhkb/hhkb-2/' example.txt > example.txt.out
-
-* mv example.txt.out example.txt
-
-* sed -i 's/hhkb/hhkb-2/g' example.txt
-
-* sed -i 's,hhkb,hhkb-2,g' example.txt
-
-* sed -i 's#hhkb#hhkb-2#g' example.txt
-
-* sed -i 's,/usr/bin,/usr/local/bin,g' example
-
-	replace /usr/bin with /usr/local/bin
-
-### insert(i)
-
-* sed -i '2a\inset line:\/usr\/bin' example
-
-* sed -i '2ainset line:/usr/bin' example
-
-* sed -i '2ainsert line:/usr/bin' example
-
-* sed '/check/i\\insertion test' example2.txt
 
 ### line range(, comma)
 
@@ -219,7 +257,7 @@ $ sed 's#insert#insertion#g' example.txt
 
 
 Command(n)-next line
-
+* 
 * sed '/check/{n;s/funn/funn-addition/;}' example2.txt
 
 	find line with 'check' and move to next line to execute next command
@@ -227,7 +265,7 @@ Command(n)-next line
 Command(y)-alphabet case change
 
 * sed '1,3y/line/LINE/' example2.txt
-
+  
 	replace 'line' in line 1 to line3 to 'LINE'
 
 Command(q)-quit
