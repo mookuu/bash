@@ -62,15 +62,20 @@ userguide of sed
 	6. use .* character
 
 		`sed -e '/l.*l/d' example.txt`(lines that contains two 'l')
+
 #### print
 
-- sed -n '1p' example
++ Print single line
 
-- sed -n '$p' example
+	`sed -n '1p' example`
 
-- sed -n '2,4p' example
+	`sed -n '$p' example`
 
-- sed -n '2, $p' example
++ Print multi lines
+
+	`sed -n '2,4p' example`
+
+	`sed -n '2, $p' example`
 
 #### pattern match
 
