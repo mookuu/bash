@@ -23,15 +23,15 @@ userguide of sed
 
 + Delete single line
 
-  `sed -e '1d' example`
+	`sed -e '1d' example`
 
-  `sed -e '$d' example`
+	`sed -e '$d' example`
 
-Delete multi lines
++ Delete multi lines
 
-    sed -e '1,3d' example
+	`sed -e '1,3d' example`
 
-    sed -e '2,$d' example
+	`sed -e '2,$d' example`
 
 3. Deltet line using pattern match
 
