@@ -1,7 +1,7 @@
 userguide of sed
 ================
 
-## Commands
+### Commands
 
 * a: add
 
@@ -19,7 +19,7 @@ userguide of sed
 
 * n: next line and execute new command
 
-### Delete
+#### Delete
 
 + Delete single line
 
@@ -29,7 +29,7 @@ userguide of sed
 
 + Delete multi lines
 
-   sed -e '1,3d' example
+    sed -e '1,3d' example
 
     sed -e '2,$d' example
 
