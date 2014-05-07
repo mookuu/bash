@@ -35,11 +35,11 @@ userguide of sed
 
 + Deltet line using pattern match
 
-	1. with character
+	- with character
 
 		`sed -e '/#/d' example.txt`
 
-	2. with word
+	- with word
 
 		`sed -e '/boy/'d example.txt`
 
