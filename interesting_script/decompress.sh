@@ -165,9 +165,8 @@ tar_func()
         fi
 }
 
-<<<<<<< HEAD
 # .zip package
-if [ ${1##*.} == zip ]; then
+if [ x${1##*.} == xzip ]; then
 	# if necessary?
 	[-d ${1%%.zip} ] || sudo mkdir ${1%%.zip}
         sudo unzip $1 -d ${1%%.zip}
@@ -175,7 +174,7 @@ if [ ${1##*.} == zip ]; then
         UNPACK=$?
         echo This is a zip package.
 fi
-=======
+
 # .tgz package
 tgz_func()
 {
@@ -191,7 +190,6 @@ tgz_func()
                 echo This is a tgz package.
         fi
 }
->>>>>>> 8f93f28325c69323c72130935883c711d1a8b637
 
 # .rar package
 rar_func()
