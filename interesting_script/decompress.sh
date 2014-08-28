@@ -316,6 +316,10 @@ main()
         esac
 }
 
+if [ x$1 == x ]; then
+	echo "Usage: decompress compressed_file"
+	exit
+fi
 main $1
 # rtn check
 if [ $UNPACK == 0 ]; then
