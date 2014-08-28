@@ -23,7 +23,7 @@
 # .lha
 # .xz
 
-# TODO: something package delete original package after decompress
+# TODO: sometime package delete original package after decompress
 # TODO: directory alread exists, overriten?
 # decompress /home/Downloads/test.gzip
 
