@@ -1,4 +1,4 @@
-userguide of sed
+serguide of sed
 ================
 
 ### Commands
@@ -45,7 +45,7 @@ userguide of sed
 
 	2. with word
 
-		`sed -e '/boy/'d example.txt`
+		`sed -e '/boy/d' example.txt`
 
 	3. with line
 
@@ -208,33 +208,24 @@ userguide of sed
 + use -e
 
   `sed -e 'cmd1' -e 'cmd2' filename`
-#### Pattern match
 
-* sed -n '/hhkb/p' example
+### Add
 
-	search line that contains hhkb
++ Add single line(replace single line)
 
-* sed -n '/\$/p' example
+    `sed -e '2a\line0: girl-' example.txt`
 
-	search line that contains $, use escape character(backslash) to print origin $
+    `sed -e '/boy/a\line0: girl-' example.txt`
 
-### add
+    `sed -e '$a\line$: end line+' example.txt`(add at end)
 
-* sed '1a add1' example2
++ Add multi lines(use one single line)
 
-	add one line(newline) after line1
+    `sed '2,4a\replace multi lines' example.txt`(after each line)
 
-* sed '$a add1' example2
++ Add multi lines(use newline character)
 
-	add one line at the end of example
-
-* sed '2,4a add2' example2
-
-	add one line after each from line 2 to line 4
-
-* sed '1a add1\nadd2' example
-
-	add two lines
+    `sed '1a\added line1\nadded line2' example.txt`
 
 * sed '/^line/a\\---->addition using pattern match' example2.txt
 

@@ -3,6 +3,7 @@
 # i=3*(5+2)
 
 # M1: (())
+# [] is deprecated, not recommanded
 val1=$((3*(5+2)))
 ((val1++))
 val11=$[3*$[5+2]]

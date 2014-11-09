@@ -1,4 +1,4 @@
 #!/bin/bash
 var=
 echo "var=$var"
-echo ${va1r}
+echo ${vava1r}

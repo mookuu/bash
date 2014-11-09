@@ -1,0 +1,19 @@
+#!/bin/bash
+# check current working directory
+
+# M1
+echo ~+
+
+# M2
+echo `pwd`
+
+# M3
+echo $PWD
+
+# previous working directory
+# M1
+echo ~-
+
+# M2
+echo $OLDPWD
+
