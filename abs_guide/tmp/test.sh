@@ -1,4 +1,6 @@
 #!/bin/bash
-var=
-echo "var=$var"
-echo ${va1r}
+
+until [ -z "$1" ]
+do
+        shift 3
+done

@@ -9,6 +9,15 @@ echo ${10}                      # Arguments greater than 9 must be enclosed in b
 
 # Other special command
 $#                              # Numbers of arguments passed by
-$*                              # Numbers of arguments passed by
+$*                              # seperate argument
 
-${!#}                           # Get last argument
+# Get last argument
+# M1
+lastarg=${!#}
+echo $lastarg
+
+# M2
+total=$#
+lastarg=${!total}
+echo "lastarg"
+
