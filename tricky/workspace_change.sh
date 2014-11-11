@@ -1,58 +1,59 @@
 #!/bin/bash -x
 
 # Change to workspace quickly
+home_dir="hidenori"
 
 case $1 in
 	1)
-		cd  /home/kohata/work/cs/bash # workspace 1: bash
+		cd  /home/$homedir/work/cs/bash # workspace 1: bash
 		;;
 	2)
-		cd /home/kohata/work/cs/productivity # workspace 2: productivity
+		cd /home/$homedir/work/cs/productivity # workspace 2: productivity
 		;;
 	3|apue)
-		cd /home/kohata/work/cs/apue  # workspace 3: apue
+		cd /home/$home_dir/work/cs/apue  # workspace 3: apue
 		;;
 	s|S)
-		cd /home/kohata/work/cs/schedule
+		cd /home/$home_dir/work/cs/schedule
 		;;
 	ema|emacs)
-		cd /home/kohata/work/cs/productivity/emacs	# emacs
+		cd /home/$home_dir/work/cs/productivity/emacs	# emacs
 		;;
 	md|markdown)
-		cd /home/kohata/work/cs/productivity/markdown	# markdown
+		cd /home/$home_dir/work/cs/productivity/markdown	# markdown
 		;;
 	tri|tricky)
-		cd /home/kohata/work/cs/bash/tricky		# /bash/tricky
+		cd /home/$home_dir/work/cs/bash/tricky		# /bash/tricky
 		;;
 	int|interesting)
-		cd /home/kohata/work/cs/bash/interesting_script	# /bash/inter*
+		cd /home/$home_dir/work/cs/bash/interesting_script	# /bash/inter*
 		;;
 	sch|pla|plan)
-		cd /home/kohata/work/cs/planning
+		cd /home/$home_dir/work/cs/planning
 		;;
 	git|github)
-		cd /home/kohata/work/cs/productivity/github
+		cd /home/$home_dir/work/cs/productivity/github
 		;;
 	awk)
-		cd /home/kohata/work/cs/bash/awk_sed/awk
+		cd /home/$home_dir/work/cs/bash/awk_sed/awk
 		;;
 	sed)
-		cd /home/kohata/work/cs/bash/awk_sed/sed
+		cd /home/$home_dir/work/cs/bash/awk_sed/sed
 		;;
 	vi|VI|vim|VIM)
-		cd /home/kohata/work/cs/productivity/vi
+		cd /home/$home_dir/work/cs/productivity/vi
 		;;
 	nano|nan)
-		cd /home/kohata/work/cs/productivity/nano
+		cd /home/$home_dir/work/cs/productivity/nano
 		;;
 	pro)
-		cd /home/kohata/work/cs/productivity
+		cd /home/$home_dir/work/cs/productivity
 		;;
 	page|blo|blog)
-		cd /home/kohata/work/cs/github_pages
+		cd /home/$home_dir/work/cs/github_pages
 		;;
 	*)
-		cd  /home/kohata/work/cs/bash # workspace 1: bash
+		cd  /home/$home_dir/work/cs/bash # workspace 1: bash
 		;;
 	# Other
 esac

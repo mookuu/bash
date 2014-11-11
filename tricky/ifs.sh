@@ -10,7 +10,8 @@ var3="h,i,j"
 IFS="+"                           # IFS is "+"
 
 echo "========================================================"
-echo $var1
+echo $var1	# + convert to space
+echo "$var1"	# will not convert to space, priority.
 echo $var2
 echo $var3
 

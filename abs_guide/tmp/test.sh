@@ -1,6 +1,8 @@
 #!/bin/bash
 
-until [ -z "$1" ]
-do
-        shift 3
-done
+
+home_dir="hidenori"
+
+echo $home_dir
+
+cd /home/$home_dir
