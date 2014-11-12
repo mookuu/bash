@@ -1,8 +1,7 @@
 #!/bin/bash
 
+true
+echo $?
 
-home_dir="hidenori"
-
-echo $home_dir
-
-cd /home/$home_dir
+true
+!true

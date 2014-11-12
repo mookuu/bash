@@ -1,2 +1,4 @@
 #!/bin/bash
-echo $var
+
+echo -e "a
+b"

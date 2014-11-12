@@ -70,6 +70,9 @@ echo '\'   # Results in \
 
 
                       #  Simple escaping and quoting
+# without quoting, \ escape the character behind it
+# in strong quoting, '', \ do not escape
+# weak quoting, "", \ do escape
 echo \z               #  z
 echo \\z              # \z
 echo '\z'             # \z
