@@ -22,3 +22,8 @@ This is line 4 of the message.
 This is the last line of the message.
 -------------------------------------"
 # However, text may not include double quotes unless they are escaped.
+mysql -u root << Command-Included
+use mysql
+select * from user;
+exit
+Command-Included
