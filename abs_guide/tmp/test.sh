@@ -1,7 +1,6 @@
 #!/bin/bash
 
-true
-echo $?
-
-true
-!true
+echo a
+[ 1 -eq 2 -a -n "`echo test 1>&2`" ]    # Wrong result
+# Result: test, short-circuit NG
+echo c
