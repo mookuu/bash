@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Definitaion of arrays
+#########################################################################
+# Definitaion
 # M1
-array={10 20 30 40 50}
+array=(10 20 30 40 50)
 
 # M2
 array[0]=10
@@ -12,46 +13,112 @@ array[3]=40
 array[4]=50
 
 # M3
-var="10 20 30 40 50"
-array=($var)
+array=([0]=10 [1]=20 [2]=30 [3]=40 [4]=50)
 
+# M4 <--TO BE CHECK
+# NOT WORK ON GNU bash, version 4.3.33(1)-release (x86_64-pc-linux-gnu)
+# var="10 20 30 40 50"
+# array=($var)
 
-# Output specify element
-echo ${array[i]}	# start from 0
+#########################################################################
+# Output
+echo ${array[i]}                # output element array[i]
+echo ${array[@]}                # output all element
+echo ${array[*]}                # output all element
+# Output specified element(range)
+echo ${array[@]}                # all
+echo ${array[@]:0}              # all
+echo ${array[@]:1}              # all elements following array[0]
+echo ${array[@]:1:3}            # array[1], array[2], array[3]
+# Get specified character of element
+array=(zero one two)
+echo ${array[0]}                # zero
+echo ${array:0}                 # zero
+echo ${array:1}                 # ero
+echo ${array:2}                 # ro
+echo ${array:3}                 # o
 
+echo ${array[1]:0}              # one
+echo ${array[1]:1}              # ne
+echo ${array[1]:2}              # e
 
-# Output all elements
-# M1
-echo ${array[@]}
+#########################################################################
+# Length
+array=(zero one two)
+echo ${#array[@]}               # entire array length
+echo ${#array[*]}               # entire array length
 
-# M2
-echo ${array[*]}
+echo ${#array}                  # length of first element:4
+echo ${#array[0]}               # length of first element:4
+echo ${#array[1]}               # length of second element:3
 
+#########################################################################
+# Delete
+unset array[i]                  # delete element array[i]
+unset array                     # delete entire array
 
-# Length of array
-# M1
-echo ${#array[@]}
+#########################################################################
+# SUBSTRING OPERATION
+#
 
-# M2
-echo ${#array[*]}
+#------------------------------------------------------------------------
+# Remove
+array=(one two threbe four threbe five five)
+# Search from front
+# NOTICE: first character must match
+# Shortest match from front of element
+echo ${array[@]#t*e}            # one two be four be five five
+echo ${array[@]#threbe}         # one two four five five
+# Longest match from front of element
+echo ${array[@]##t*e}           # one two four five five
+echo ${array[@]##threbe}        # one two four five five
+# Singe element
+str=abcd1abcd2
+echo ${str#a*d}                 # 1abcd2
+echo ${str##a*d}                # 2
 
+# Search from end
+# NOTICE: end character must match
+# Shortest match from end of element
+echo ${array[@]%h*e}            # one two t four t five five
+# Longest match from end of element
+echo ${array[@]%%t*e}           # one two four five five
+# Single element
+str=0abcd1abcd
+echo ${str%a*d}                 # 0abcd1
+echo ${str%%a*d}                # 0
 
-# Delete specify element
-unset array[i]	# TODO:
-
-
-# Delete entire array
-unset array
-
-
-# Output specify element(range)
-echo ${array[@]:0:3}	# output 1 2 3
-# 0: start position
-# 3: length
-
-
+#------------------------------------------------------------------------
 # Replace
-echo ${a[@]/0/1}	# replace 0 with 1
-# 0: character which wanna be replaced
-# 1: replacement character
+array=(one two three four fivive fivive)
+# Replace first occurrence of substring with replacement
+echo ${array[@]/iv/AA}          # one two three fAAive fAAive
+# Replace all occurrence of substring with replacement
+echo ${array[@]//iv/AA}         # one two three fAAAAe fAAAAe
+# Single element
+str=fivefive
+echo ${str/ve/AA}               # fiAAfive
+echo ${str//ve/AA}              # fiAAfiAA
+
+# Replace front-end occurrence of substring, firt substring must be matched
+echo ${array[@]/#fi/AA}         # one two three AAvive AAvive
+# Replace back-end occurrence of substring, end substring must be matched
+echo ${array[@]/%ve/BB}         # one two three fiveiBB fiveiBB
+
+# Replace using assignment
+replacement() {
+    echo -n "!!!"
+}
+echo ${array[@]/%e/$(replacement)}
+
+#------------------------------------------------------------------------
+# Delete
+array=(one two three four fivive fivive)
+# Delete first occurrence of substring
+echo ${array[@]/iv/}               # one two three four five five
+# Delete all occurrence of substring
+echo ${array[@]//iv/}              # one two three four fe fe
+
+#########################################################################
+# Load files to array
 
