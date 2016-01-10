@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# colon
+
+# 1: null command, equivalent to  "NOP"(no op, a do nothing operation)
+# a synonym fro the shell builtin true
+# exit status is true(0)
+:
+echo $?
+
+# 2: endless loop
+#while :
+while false
+do
+	echo 1
+	echo 2
+	echo 3
+done
+
+# same as:
+#while true
+while false
+do
+	echo 1
+	echo 2
+	echo 3
+done
+
+# 3: placehoder in if/the test
+if true
+then :	# do nothing and branch ahead
+else
+	echo false
+fi
+
+# 4: placeholder where a binary operation is expected
+: ${username=`whoami`}
+# ${username=`whoami`}	Gives an error without the leading :
+#			unless "username" is a command or builtin...
+: ${1?"Usage: $0 ARGUMENT"}
+# From "usage-message.sh example script.
+
+# 5: evaluate string of variablses using parameter substitution
+: ${HOSTNAME?} ${USER?} ${MAIL?}
+# prints error message if one or more of essential environment is not set
+
+
+# 6: zero file, if object file not exist, create it
+: > tmpfile.txt
+
+
+

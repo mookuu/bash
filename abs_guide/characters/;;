@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# 1: terminator in 'case ' opition(double-semicolon)
+
+#count_flg=2
+
+case "$count_flg" in
+	0)
+		echo "count flg isn't set"
+		;;
+	1)
+		echo "count flg is set"
+
+		;;
+	*)
+		echo "error value"
+		exit 1
+		;;
+esac

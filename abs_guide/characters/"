@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# 1: partial quoting(double quote)
+#	"STRING" preserves most of the special characters within STRING
+# TODO: sample ?>

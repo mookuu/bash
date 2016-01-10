@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# foward slash
+
+# 1: filename path separetor
+
+echo /home/ryan/Download
+
+
+# 2:

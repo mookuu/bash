@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# ;;&
+# ;&
+
+# 1:terminator in 'case' opition(version 4+ of Bash)
+
+count_flg=0
+
+
+# BUG?
+# printed 0 and *
+case "$count_flg" in
+	0)
+		echo "count flg isn't set"
+		;;&
+	1)
+		echo "count flg is set"
+		;;&
+	3)
+		echo "error value"
+#		exit 1
+		;;&
+	*)
+		echo "unexpected value"
+		;;
+esac
+

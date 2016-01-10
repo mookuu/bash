@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# 1: comments
+echo test line
+# this line is a comment
+
+
+# comments  can embeded within a pipe
+initial=( `cat "$startfile" | sed -e '/#/d' | tr -d '\n' |\
+# Delete lines containing '#' comment character.
+sed -e 's/\./\. /g' -e 's/_/_ /g'` )
+# Excerpted from life.sh script
+
+
+
+# 2: # not begins a comment in following case
+#	I:  quoted or escaped #
+#	II: numeric constant expressions
+#	III:certain parameter-substitution constructs
+
+echo "The # here does not begin a comment."
+echo 'The # here does not begin a comment.'
+echo The \# here does not begin a comment.
+echo The # here begins a comment.
+echo $(( 2#101011 )) # Base conversion, not a comment.
+echo ${PATH#*:} # Parameter substitution, not a comment.

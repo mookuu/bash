@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# comma operator
+
+# 1: link arithmetic operations, all evaluted, last return
+let "t=((a=2,15/3))"
+echo t=$t
+echo a=$a
+
+
+# 2: concatenate strings
+for file in /{,usr/}bin/*alc
+do
+	if [ -x "$file" ]; then
+		echo $file
+	fi
+done
+
+# 3: in some parameter substitution
+
+# TODO: sample>?
+
+

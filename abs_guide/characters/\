@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# backslash
+
+# 1: quoting, same as `` or weekened ""
+echo  use backslash: \X
+
+echo use double quotion: "X"
+
+echo use single quotion: 'X'
+
+# 2:  others??
+

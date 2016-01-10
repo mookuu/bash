@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# 1: full quoting(single quote)
+#	'STRING' preserves all special characters within STRING
+# TODO: sample?

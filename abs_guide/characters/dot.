@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# 1:include file to current position(.-period)-bash builtin
+. data-file		# include data-file to here
+# same as: "source data-file",  but more portable
+
+# 2: component of filename-hidden file, ls will not display
+# .   current working directory
+# ..  the parent direcotry
+
+# 3: character match
+#	as part of regular expression, a "dot" matches a single character
+
+# TODO: sample >?
+
+
+
