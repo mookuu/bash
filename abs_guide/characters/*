@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# asterisk
+
+# 1: wild card
+#    servers as a "wild card" for file name expansion in globbing.
+#    matches every filename in given directory
+echo *	# list all files in current directory
+
+# 2: represents any number(or zero) characters in regular expression
+# TODO: sample?
+
+# 3: arithmetic operator
+#    means multiplication
+let "z=2*3"	# 2*3
+#    double asterisk  --> exponentiation
+let "z=2**3"	# 2*2*2
+
+# 3: extended file match
+# TODO: sample?
+
+
+
+
+

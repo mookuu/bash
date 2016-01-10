@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# bang
+
+# 1: reverse(or negate) the sense of a test or exit status
+
+# 2: in indirect variable references
+# TODO: sample?
+
+# 3: in command line, invoke bash history mechanism
+#    within a script, the history mechanism is disabled

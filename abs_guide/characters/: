@@ -48,5 +48,28 @@ fi
 # 6: zero file, if object file not exist, create it
 : > tmpfile.txt
 
+# 7: in combination with the >> redirection operator,
+#    has no effect on a pre-existing file.
+#    regular files only, not on pipe, symlinks and some special files
+#
 
+# 8: begin a command line
+#    turn on error check
+#    `#`: turn of f error check
+: This is a comment that generates an error, (if [ $x -eq 3 ])
+
+# 9: field seperaor in /etc/passwd
+
+
+# 10: as a function name
+:()
+{
+	echo  "name of this function is $FUNCNAME"
+}
+
+# 11: placeholder in an anotherwise empty function
+not_empty()
+{
+	:
+}	# contains a :(null command), and it is not empty.
 

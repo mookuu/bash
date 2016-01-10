@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# 1: test operator
+#    in double-parentheses construct, serve as an element of C-style trinary operator
+#    condition?result-if-true:result-if-false
+
+#(( var0 = var1<98?1"2 ))
+
+#
+# same as following
+var1=100
+if [ "$var1" -lt 98 ]; then
+	var0=1
+else
+	var0=2
+fi
+
+echo var0:$var0
+
+
+# 2: parameter substitution, test wether a variable is set
+# TODO: sample?
+
+# 3: wild card
+#    serve as a single-character in extended regular expression
+
+
+
+
+
+
+

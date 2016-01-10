@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# 1: variable substitution(contents of a variable)
+var1=2
+var2=test
+
+echo $var1	# 2
+echo $var2	# test
+
+# 2: end-of-line
+#    regular expression, address the end-of-line in text
+# TODO:sample?
+
+
