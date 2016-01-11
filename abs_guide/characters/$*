@@ -3,6 +3,8 @@
 # 1: positional parameters
 # TODO: sample?
 # $* and $@ must be quoted(double quote?)
+echo "All the command-line parameters are: "$*""
+
 
 
 # -> chapter 10 - positional parameter

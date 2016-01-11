@@ -6,3 +6,13 @@
 
 # TODO: sample??
 
+# assignment
+a=`echo Hello!`
+echo a=$a
+
+a=`ls -l`
+echo $a
+
+# quotion preserves whitespace
+echo "$a"
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 1: string substitution
+
+a=2334
+b=${a/23/BB}	# ${}: variable substitution
+		# str/m/n : replace m in str with n
+
+echo "a=$a"
+echo "b=$b"

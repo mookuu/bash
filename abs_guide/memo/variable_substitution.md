@@ -4,6 +4,6 @@ may cause error in legacy sh
 
     $variable
 
-safe one
+security one
 
     ${variable}

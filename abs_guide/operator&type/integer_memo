@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# 1: Bash sets the "integer value" of a string to 0
+a=BB23
+echo "a=$a"
+
+declare -i a	# declaring it an integer doesn't help
+echo "after declaration,a=$a"
+
+let "a+=1"
+echo "after arithmetic operation,a=$a"
+
+# 2: Bash sets the "Null variable" to an integer
+e=''	# e=""	e=
+echo "before arithmetic operation,e=$e"
+let "e+=1"
+echo "after arithmetic,e=$e"
+
+echo
+
+# 3: Bash sets the "undeclared variable" to an integer
+echo "undeclared f=$f"
+let "f+=1"
+echo "after arithmetic operation,f=$f"
+
+echo
+
+
+#
+# Bash (usually) sets the "integer value" of null to zero when performing an
+# arithmentic operation.
+# Undocumented and probably non-portable behavior
+
+# erro case:
+let "f/=$undecl_var"	# Divide by Null.
+			# undecl_var is not set to zero here
+
+let "f/=0"		# Divide by zero
+			# Expected behavior(division by 0)
+
+
+

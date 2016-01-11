@@ -2,3 +2,7 @@
 
 # parameter substitution
 # TODO: sample?
+
+var=23
+
+echo var=${var}

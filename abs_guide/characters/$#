@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# 1: number of args passed(command-line parameter)
+args=$#
+
+echo "This script has '$#' parameters"
+echo This script has '$#' parameters
+

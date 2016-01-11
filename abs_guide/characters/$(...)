@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# 1: newer method than backquote(`)
+#    form of command substitution
+
+R=$(cat /etc/os-release)
+arch=$(uname -m)
+
+echo "R=$R"
+echo "arch=$arch"
+

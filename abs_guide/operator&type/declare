@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# declare a variable
+
+declare -i m	# declaring m as an integer
+

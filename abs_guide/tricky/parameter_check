@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# command-line parameter check(null check)
+
+
+# M1:-->NG
+var_dummy=$1_
+var=${var_dummy/_/}	# side effect: if $1 has underscore(anywhere it appears)
+
+# M2:-->NG
+if [ -z $1 ]; then
+	echo "null parameter"
+fi	# may have unexpected side-effect
+
+# M3:
+if [ "a" = "a$1" ]; then
+	echo "null parameter"
+fi
+
+# M4:
+${1:-$DefaultVal}
+# TODO:??
+# see "Parameter Substitution" section
+# in the "Variable Revisited" chapter
+
+
+
+

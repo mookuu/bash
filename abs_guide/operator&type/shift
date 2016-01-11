@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# reassign the positional parameter, in effect shifting them to the left one notch
+
+# 1:
+# $1 <-- $2, $2 <-- $3, etc
+# the old $1 disappears, $0 does not change
+# not a parameter copy, but move
+
+until [ -z "$1" ]
+do
+	echo -n "$1"
+	shift
+done
+
+echo	# extra linefeed
+
+
+# 2:
+# shift by n steps
+shift 3
+# same as
+n=3
+shift $n
+
+
+# 3:
+#   shift may stuck in endless loop if
+#   shift steps more than(>) parameter numbers, shift returns an exit status of 1
+#   deal:
+shift 20 || break
+
+# same result:
+until [ -z "$1" ]
+do
+	echo "$1"
+	shift 5
+done
+
+# ./shift 1 2 3 4		->1 1 1: endless loop
+# ./shift 1 2 3 4 5 6		->6 6 6: endless loop
+# ./shift 1 2 3 4 5		->1; OK
+# ./shift 1 2 3 4 5 6 7 8 9 10	->1 6; OK
+
