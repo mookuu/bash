@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# for loop in bash
+
+# M1:
+for var in 1 2 3 4 5
+do
+	echo -n "$var"
+done
+
+echo

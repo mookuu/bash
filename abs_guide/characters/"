@@ -3,3 +3,9 @@
 # 1: partial quoting(double quote)
 #	"STRING" preserves most of the special characters within STRING
 # TODO: sample ?>
+
+
+# sample 1: preserve whitespace
+hello="A B  C   D"
+echo hello\(no quotion\)  :$hello
+echo hello\(with quotion\):"$hello"
