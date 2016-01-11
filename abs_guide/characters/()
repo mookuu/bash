@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# 1: command group
+#    a listing of commands within parentheses starts a subshell
+#    variable inside parentheses are not visible to the parent script
+(a=hello; echo $a)
+
+
+
+# parent process ID and child process ID??
+echo parent process ID: $$
+(echo child process ID:$$)
+
+
+#
+var=12;
+(var=10)
+echo var:$var
+
+
+# 2: array initialization
+array=(10 20 30)
+
+echo $array
+
+
+

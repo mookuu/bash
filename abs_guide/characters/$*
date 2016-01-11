@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# 1: positional parameters
+# TODO: sample?
+# $* and $@ must be quoted(double quote?)
+
+
+# -> chapter 10 - positional parameter

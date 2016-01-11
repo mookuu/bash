@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# 1: exit status variable
+#    holds the exit status  of a command , a function or the script iteself
+# TODO: sample?
