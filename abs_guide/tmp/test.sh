@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo "'$a'"
+list="a b c"
+
+COMMAND this is $list

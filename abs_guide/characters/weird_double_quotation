@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#
+
+echo
+
+# M1:
+var="'(]\\{}\$\""
+echo $var	# '(]\{}$"
+echo "$var"	# '(]\{}$"
+echo
+
+echo
+
+# M2:
+IFS='\'		# set IFS(internal field separator)
+echo $var	# '(] {}$"    without quotation, \ interprets as IFS(blank)
+echo "$var"	# '(]\{}$"    double quotation keeps the \(blank here) from being preserve
+# see NOTATION if ".sh
+
+echo
+
+# M3:
+# IFS is \
+var2="\\\\\""
+echo $var2	#   "
+echo "$var2"	# \\"
+# see M2
+
+echo
+
+# M4:
+var3='\\\\'
+echo "$var3"	# \\\\
+# strong quoting '' works
+
+# var4="\\\\""		# error, " has to be pair or use \(escape), ''(strong quoting)
+# echo "$var4"
+
+echo
+
+# M5:
+echo "$(echo '"')"	# "
+
+echo
+
+# M6:
+var6="Two bits"
+echo "\$var6 = "$var6""
+echo "\$var6 = $var6"

@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # 1: partial quoting(double quote)
-#	"STRING" preserves most of the special characters within STRING
+#   "STRING" preserves most of the special characters within STRING
+#   except: $  `(backquote)  \(escape)
+#   (double quotes prevents reinterpretation of all special characters inline the quoted string)
 # TODO: sample ?>
 
 
@@ -9,3 +11,25 @@
 hello="A B  C   D"
 echo hello\(no quotion\)  :$hello
 echo hello\(with quotion\):"$hello"
+
+# 2: supress echo's "appetite" for newlines
+echo $(ls -l)
+echo "$(ls -l)"
+
+# 3: prevent word splitting
+List="one two three"
+
+for a in $List	# split the variable in parts at whitespace
+do
+	echo "$a"
+done
+
+for a in "$List"	# preserves whitespace in a single variable
+do
+	echo "$a"
+done
+
+
+# NOTATION:
+# enclosing the arguments to an echo statement in doulbe quotes is necessary
+#    only when word splitting or preservation of whitespace
