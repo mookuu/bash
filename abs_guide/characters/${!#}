@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# last parameter
+
+# M1:
+echo "last parameter: ${!#}"
+
+# M2:
+arg=$#	# same as arg=${#}
+lastarg=${!arg}
+echo "last parameter: $lastarg"
