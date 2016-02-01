@@ -1,5 +1,3 @@
 #!/bin/bash
 
-quote=$'\042'
-	
-echo $quote
+echo $'\n'

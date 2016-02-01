@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 1: use escaped octal or hex values to assign ASCII characters to variable
+# M1: use escaped octal or hex values to assign ASCII characters to variable
 
 variable=$'\042'	# \0: escape 0 to octal form
 			# 042(octal)--> "
@@ -9,3 +9,4 @@ variable=$'\042'	# \0: escape 0 to octal form
 echo $variable
 
 
+# M2: 
