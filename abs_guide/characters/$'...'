@@ -5,8 +5,17 @@
 variable=$'\042'	# \0: escape 0 to octal form
 			# 042(octal)--> "
 
+variable=$\'137'	# _
+
 
 echo $variable
 
 
-# M2: 
+# M2: special meaning of certain escaped characters
+#    see M2 of "\.sh"
+echo $'\n'	# newline
+echo $'\a'	# alert(beep)
+# however, the following doesn't work
+echo $'\X'	# prints \X
+
+

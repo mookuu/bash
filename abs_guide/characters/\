@@ -2,7 +2,7 @@
 
 # backslash
 
-# 1: quoting, same as `` or weekened ""
+# M1: quoting, same as `` or weekened ""
 # the escape(\) preceding character tells the shell to interpret that character literally
 echo  use backslash: \X
 
@@ -10,7 +10,7 @@ echo use double quotion: "X"
 
 echo use single quotion: 'X'
 
-# 2: special meanings of certain escaped characters
+# M2: special meanings of certain escaped characters
 
 #	\n	:	newline
 #	\r	:	return
@@ -20,6 +20,9 @@ echo use single quotion: 'X'
 #	\a	:	alert(beep or flash)
 #	\0xx	:	translate to the octal ASCII equivalent of 0nn,
 #			where nn is a string of digits
+
+# M3: \ can't escape '(single quote)
+echo "\'"	# \'
 
 
 
